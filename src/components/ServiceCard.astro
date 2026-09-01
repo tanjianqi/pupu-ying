@@ -1,0 +1,25 @@
+---
+// 组件: ServiceCard
+// 职责: 渲染单张 GEO 服务卡片（sasly-card-item 结构：图标 + 标题 + 描述 + 跳转入口）
+// 依赖: flaticon_sasly.css（图标）、theme.css（卡片样式）
+// Props: icon(string, flaticon 类名) / title(string) / desc(string, 可含 HTML) / href(string, 跳转地址)
+const { icon, title, desc, href } = Astro.props;
+---
+<div class="sasly-card-item style-one mb-30" data-aos="fade-up" data-aos-duration="1000">
+    <div class="content-box">
+        <div class="icon">
+            <i class={icon}></i>
+        </div>
+        <div class="content">
+            <h5>{title}</h5>
+            <p set:html={desc}></p>
+        </div>
+    </div>
+    <div class="thumbnail">
+        <div class="hover-overlay">
+            <div class="hover-content">
+                <a href={href} class="icon-btn"><i class="far fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

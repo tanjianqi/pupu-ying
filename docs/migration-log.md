@@ -11,8 +11,8 @@
 |---|---|---|---|
 | [x] | index.html | src/pages/index.astro | v0.4.0 |
 | [ ] | about.html | src/pages/about.astro | v0.8.0 |
-| [ ] | geo.html | src/pages/geo.astro | v0.5.0 |
-| [ ] | geoservice.html + 服务.html | src/pages/geoservice.astro | v0.5.0 |
+| [x] | geo.html | src/pages/geo.astro | v0.5.0 |
+| [x] | geoservice.html + 服务.html | src/pages/geoservice.astro | v0.5.0 |
 | [ ] | 案例列表.html | src/pages/cases/index.astro（补回） | v0.6.0 |
 | [ ] | 案例详情.html | src/pages/cases/[slug].astro（补回） | v0.6.0 |
 | [ ] | —（注释中） | src/pages/rank.astro（补回） | v0.7.0 |
@@ -78,7 +78,7 @@
 | [ ] | theme1.js | 验证无引用→删除 | 删除 |
 | [ ] | theme2.js | 验证无引用→删除 | 删除 |
 | [ ] | theme3.js | 验证无引用→删除 | 删除 |
-| [ ] | theme4.js | 验证无引用→删除 | 删除 |
+| [x] | theme4.js | 拆解到 pages/geo.js + geoservice.js | src/scripts/pages/ |
 | [x] | theme5.js | 拆解到 pages/home.js | src/scripts/pages/home.js |
 | [ ] | ajax-contact.js | 迁移 | src/scripts/pages/contact.js |
 
@@ -93,7 +93,7 @@
 | [x] | Header.astro | v0.3.0 |
 | [x] | Nav.astro | v0.3.0 |
 | [x] | Footer.astro | v0.3.0 |
-| [ ] | ServiceCard.astro | v0.5.0 |
+| [x] | ServiceCard.astro | v0.5.0 |
 | [ ] | CaseCard.astro | v0.6.0 |
 | [x] | CTASection.astro | v0.4.0 |
 

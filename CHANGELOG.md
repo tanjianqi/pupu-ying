@@ -6,6 +6,25 @@
 
 ---
 
+## [v0.5.0] - 2026-09-01
+
+### 阶段：GEO 介绍 + 服务页
+
+### Added
+- src/data/services.json（3 条服务卡片数据）
+- src/components/ServiceCard.astro（Props: icon/title/desc/href，set:html 支持富文本 desc）
+- src/pages/geo.astro（GEO 介绍页，保留原站卡片 HTML 以保真）
+- src/pages/geoservice.astro（GEO 服务页，以 geoservice.html 为主）
+- src/scripts/pages/geo.js（theme4.js 迁移，本页无 select/slider 为占位）
+- src/scripts/pages/geoservice.js（同上）
+
+### Changed
+- 服务.html 为英文模板，与 geoservice.html 完全不同，未合并
+- geo/geoservice 均无 select/jquery-ui 控件，nice-select/jquery-ui 未按需加载（避免无效资源）
+- migration-log: geo/geoservice/服务 三行 + ServiceCard + theme4.js 打勾
+
+---
+
 ## [v0.4.0] - 2026-09-01
 
 ### 阶段：首页迁移
