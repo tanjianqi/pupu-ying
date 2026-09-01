@@ -1,0 +1,134 @@
+/*!
+*    ______ _       _   _
+*    |  ____| |     | | (_)
+*    | |__  | | __ _| |_ _  ___ ___  _ __
+*    |  __| | |/ _` | __| |/ __/ _ \| '_ \
+*    | |    | | (_| | |_| | (_| (_) | | | |
+*    |_|    |_|\__,_|\__|_|\___\___/|_| |_|
+*
+*         https://www.flaticon.com
+*/
+
+@font-face {
+    font-family: "flaticon_sasly";
+    src: url("../font/flaticon_sasly.woff2") format("woff2"),
+url("../font/flaticon_sasly.woff") format("woff"),
+url("../font/flaticon_sasly.eot") format("embedded-opentype"),
+url("../font/flaticon_sasly.ttf") format("truetype"),
+url("../font/flaticon_sasly.svg") format("svg")
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_sasly !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-collaboration:before {
+    content: "\f101";
+}
+.flaticon-iteration:before {
+    content: "\f102";
+}
+.flaticon-business-trip:before {
+    content: "\f103";
+}
+.flaticon-product-development:before {
+    content: "\f104";
+}
+.flaticon-quote:before {
+    content: "\f105";
+}
+.flaticon-professional-development:before {
+    content: "\f106";
+}
+.flaticon-stopwatch:before {
+    content: "\f107";
+}
+.flaticon-quotation-mark:before {
+    content: "\f108";
+}
+.flaticon-risk:before {
+    content: "\f109";
+}
+.flaticon-flexible:before {
+    content: "\f10a";
+}
+.flaticon-cross-platform:before {
+    content: "\f10b";
+}
+.flaticon-encrypted:before {
+    content: "\f10c";
+}
+.flaticon-teacher:before {
+    content: "\f10d";
+}
+.flaticon-webinar:before {
+    content: "\f10e";
+}
+.flaticon-access-control:before {
+    content: "\f10f";
+}
+.flaticon-cooperation:before {
+    content: "\f110";
+}
+.flaticon-curve:before {
+    content: "\f111";
+}
+.flaticon-megaphone:before {
+    content: "\f112";
+}
+.flaticon-healthcare:before {
+    content: "\f113";
+}
+.flaticon-computer-science:before {
+    content: "\f114";
+}
+.flaticon-world-wide-web:before {
+    content: "\f115";
+}
+.flaticon-live-music:before {
+    content: "\f116";
+}
+.flaticon-positive-review:before {
+    content: "\f117";
+}
+.flaticon-goal:before {
+    content: "\f118";
+}
+.flaticon-target:before {
+    content: "\f119";
+}
+.flaticon-marketing:before {
+    content: "\f11a";
+}
+.flaticon-product:before {
+    content: "\f11b";
+}
+.flaticon-brainstorming:before {
+    content: "\f11c";
+}
+.flaticon-planning:before {
+    content: "\f11d";
+}
+.flaticon-award-symbol:before {
+    content: "\f11e";
+}
+.flaticon-compliance:before {
+    content: "\f11f";
+}
+.flaticon-route:before {
+    content: "\f120";
+}
+.flaticon-mailbox:before {
+    content: "\f121";
+}
+.flaticon-telephone:before {
+    content: "\f122";
+}
+

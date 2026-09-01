@@ -1,0 +1,32 @@
+# === 扑扑鹰 .gitignore ===
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+.astro/
+
+# 视觉伴侣会话
+.superpowers/
+
+# 归档/参考（体积大，不纳入版本控制）
+backup/
+模板/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 日志
+*.log
+npm-debug.log*
+
+# 环境变量
+.env
+.env.local
