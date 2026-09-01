@@ -30,16 +30,16 @@
 
 | 状态 | 文件 | 处置 | 去向 |
 |---|---|---|---|
-| [ ] | bootstrap.min.css | 保留 vendor | public/vendor/css/ |
-| [ ] | slick.css | 保留 vendor | public/vendor/css/ |
-| [ ] | aos.css | 保留 vendor | public/vendor/css/ |
-| [ ] | magnific-popup.css | 保留 vendor | public/vendor/css/ |
-| [ ] | nice-select.css | 保留 vendor | public/vendor/css/ |
-| [ ] | jquery-ui.min.css | 保留 vendor | public/vendor/css/ |
-| [ ] | jquery.animatedheadline.css | 保留 vendor | public/vendor/css/ |
-| [ ] | all.min.css | 保留 vendor | public/vendor/css/ |
-| [ ] | flaticon_sasly.css | 保留 vendor | public/vendor/css/ |
-| [ ] | css2.css | 保留 vendor | public/vendor/css/ |
+| [x] | bootstrap.min.css | 保留 vendor | public/vendor/css/ |
+| [x] | slick.css | 保留 vendor | public/vendor/css/ |
+| [x] | aos.css | 保留 vendor | public/vendor/css/ |
+| [x] | magnific-popup.css | 保留 vendor | public/vendor/css/ |
+| [x] | nice-select.css | 保留 vendor | public/vendor/css/ |
+| [x] | jquery-ui.min.css | 保留 vendor | public/vendor/css/ |
+| [x] | jquery.animatedheadline.css | 保留 vendor | public/vendor/css/ |
+| [x] | all.min.css | 保留 vendor | public/vendor/css/ |
+| [x] | flaticon_sasly.css | 保留 vendor | public/vendor/css/ |
+| [x] | css2.css | 保留 vendor | public/vendor/css/ |
 | [ ] | style-ppy.css | 合并去重 | src/styles/theme.css |
 | [ ] | style-ppy1.css | 合并去重 | src/styles/theme.css |
 | [ ] | common_style.css | 合并去重 | src/styles/theme.css |
@@ -58,21 +58,21 @@
 
 | 状态 | 文件 | 处置 | 去向 |
 |---|---|---|---|
-| [ ] | jquery-3.7.1.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | bootstrap.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | popper.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | gsap.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | ScrollSmoother.min.js | 保留 vendor（核对授权） | public/vendor/js/ |
-| [ ] | ScrollTrigger.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | SplitText.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | slick.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | aos.js | 保留 vendor | public/vendor/js/ |
-| [ ] | jquery.magnific-popup.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | jquery.nice-select.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | isotope.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | imagesloaded.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | jquery-ui.min.js | 保留 vendor | public/vendor/js/ |
-| [ ] | jquery.animatedheadline.js | 保留 vendor | public/vendor/js/ |
+| [x] | jquery-3.7.1.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | bootstrap.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | popper.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | gsap.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | ScrollSmoother.min.js | 保留 vendor（核对授权） | public/vendor/js/ |
+| [x] | ScrollTrigger.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | SplitText.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | slick.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | aos.js | 保留 vendor | public/vendor/js/ |
+| [x] | jquery.magnific-popup.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | jquery.nice-select.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | isotope.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | imagesloaded.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | jquery-ui.min.js | 保留 vendor | public/vendor/js/ |
+| [x] | jquery.animatedheadline.js | 保留 vendor | public/vendor/js/ |
 | [ ] | common_script.js | 拆解 | src/scripts/ |
 | [ ] | theme.js | 拆解后删除 | 删除 |
 | [ ] | theme1.js | 验证无引用→删除 | 删除 |
