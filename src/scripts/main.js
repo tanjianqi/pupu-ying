@@ -1,7 +1,7 @@
 /**
  * 扑扑鹰全站初始化脚本
  * @module main
- * @依赖 jquery, bootstrap, gsap/ScrollSmoother/ScrollTrigger/SplitText, aos, magnific-popup
+ * @依赖 jquery, bootstrap, gsap/ScrollTrigger/SplitText, aos, magnific-popup
  * @导出 无（自动执行，由 BaseLayout 引入）
  * @来源 从原 static/js/common_script.js 迁移通用部分
  */
@@ -68,9 +68,8 @@
     $('.img-popup').magnificPopup({ type: 'image', gallery: { enabled: true } });
   }
 
-  //===== GSAP 平滑滚动 + 文字动画
-  gsap.registerPlugin(SplitText, ScrollTrigger, ScrollSmoother);
-  ScrollSmoother.create({ smooth: 1, effects: true, smoothTouch: 0.1 });
+  //===== GSAP 文字动画（v1.0.1: 移除 ScrollSmoother 未授权插件，改原生滚动）
+  gsap.registerPlugin(SplitText, ScrollTrigger);
 
   if ($('.split').length > 0) {
     let mySplitText = new SplitText('.split', { type: 'chars' });

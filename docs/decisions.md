@@ -90,11 +90,11 @@
 
 ## ADR-008 · ScrollSmoother 授权与降级决策
 
-- **状态**: 已采纳（2026-09-02，v1.0.0 定稿）
+- **状态**: 已执行（2026-09-02，v1.0.1 删除未授权 vendor 文件）
 - **背景**: `public/vendor/js/ScrollSmoother.min.js` 为 GSAP Club 付费插件，需核对授权。v0.4.0 首页迁移时已加载该文件。
-- **决策**: 暂保留 ScrollSmoother.min.js 加载（原站已含此文件），但全站滚动平滑改由 ScrollTrigger + 原生 CSS scroll-behavior 实现，不再依赖 ScrollSmoother API。v1.0.0 起标注为「待授权确认」，若正式上线前未取得授权则删除该 vendor 文件。
-- **理由**: 保留文件不影响功能（已不调用其 API），删除需验证无副作用；先上线候选，授权问题后续处理。
-- **后果**: 上线候选版本含未授权 vendor 文件，正式部署前必须确认或删除。
+- **决策**: v1.0.1 删除 ScrollSmoother.min.js vendor 文件与所有 API 调用，改用原生 CSS `scroll-behavior: smooth` 实现平滑滚动。SplitText + ScrollTrigger 保留（GSAP 免费插件）。
+- **执行**: 删除 public/vendor/js/ScrollSmoother.min.js；BaseLayout 移除 script 加载；main.js 移除 registerPlugin 与 ScrollSmoother.create 调用；theme.css 添加 `html { scroll-behavior: smooth; }`。
+- **后果**: 全站滚动平滑改由浏览器原生实现，无授权风险。视觉上略有差异（无 GSAP 增强缓动），但功能完整。
 
 ---
 

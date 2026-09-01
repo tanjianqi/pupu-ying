@@ -6,6 +6,36 @@
 
 ---
 
+## [v1.0.1] - 2026-09-02
+
+### 阶段：已知遗留修复
+
+### Fixed
+- **theme.css 12 个 url() WARN 全部消除**：
+  - 6 个存在图片（v_01/02/13/25/27/banner-home-bg3）+ 1 字体（DOUYUFont-Regular）从 legacy/static/ 复制到 public/assets/{image,font}/
+  - 5 个原站缺失图片（v_26/29/30/31/35）创建 1x1 透明 PNG 占位
+  - theme.css 15 处 `url('../image/` / `url('../font/` 统一改为 `url('/assets/image/` / `url('/assets/font/` 绝对路径
+
+### Removed (ADR-008 执行)
+- public/vendor/js/ScrollSmoother.min.js（GSAP Club 付费插件，未授权）
+- BaseLayout.astro 中 ScrollSmoother.min.js script 加载
+- main.js 中 `gsap.registerPlugin(..., ScrollSmoother)` 与 `ScrollSmoother.create(...)` 调用
+
+### Changed
+- theme.css 顶部添加 `html { scroll-behavior: smooth; }` 替代 ScrollSmoother 平滑滚动
+- main.js 依赖注释移除 ScrollSmoother
+- docs/decisions.md ADR-008 状态从「已采纳」改为「已执行」
+
+### Build
+- npm run build 通过，**0 WARN**（v1.0.0 时 12 个 WARN 全部消除）
+- linkinator: 128 links, 0 broken
+- package.json 1.0.0 → 1.0.1
+
+### 残留状态
+- 已知遗留全部清零，项目可正式部署
+
+---
+
 ## [v1.0.0] - 2026-09-02
 
 ### 阶段：上线候选
