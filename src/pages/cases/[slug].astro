@@ -1,0 +1,87 @@
+---
+// 页面: cases/[slug]
+// 职责: 案例详情动态路由 —— getStaticPaths 从 cases.json 生成所有案例详情页；渲染 cover + content 数组
+// 依赖: BaseLayout, CTASection, src/data/cases.json
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import cases from '../../data/cases.json';
+
+export function getStaticPaths() {
+  if (!Array.isArray(cases) || cases.length === 0) {
+    return [];
+  }
+  return cases.map((c) => ({
+    params: { slug: c.slug },
+    props: { caseData: c },
+  }));
+}
+
+const { caseData } = Astro.props;
+---
+<BaseLayout activeNav="cases" title={`${caseData.title} - 扑扑鹰`} bodyClass="business-home">
+    <section class="page-hero-ss">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-content text-center">
+                        <h1 class="page-title">服务案例</h1>
+                        <ul class="breadcrumb-link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/cases">服务案例</a></li>
+                            <li class="active">{caseData.title}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-details-ss pb-80">
+        <div class="container">
+            <div class="project-details-wrapper">
+                <div class="project-thumbnail">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="thumbnail mb-65">
+                                <img src={caseData.cover} alt={caseData.title}>
+                                <div class="project-info-box">
+                                    <h4 class="title">案例信息</h4>
+                                    <ul>
+                                        <li><span class="title">案例标题：</span><span class="info">{caseData.title}</span></li>
+                                        <li><span class="title">优化平台：</span><span class="info">{caseData.platform}</span></li>
+                                        <li><span class="title">发布日期：</span><span class="info">{caseData.date}</span></li>
+                                        <li><span class="title">服务类别：</span><span class="info">GEO 优化</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="content">
+                                <h3 class="title">{caseData.title}</h3>
+                                <p>{caseData.summary}</p>
+                                {caseData.content.map((block) => (
+                                    block.type === 'img' ? (
+                                        <div class="thumbnail mb-30">
+                                            <img src={block.src} alt={caseData.title} />
+                                        </div>
+                                    ) : (
+                                        <p set:html={block.text}></p>
+                                    )
+                                ))}
+                                <div class="about-button mt-40">
+                                    <a href="/contact" class="theme-btn style-two">免费获取优化方案 <i class="far fa-angle-double-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection />
+</BaseLayout>

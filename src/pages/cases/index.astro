@@ -1,0 +1,63 @@
+---
+// 页面: cases/index
+// 职责: 案例列表页 —— 顶部 hero + 平台过滤按钮 + 案例卡片墙 + 底部 CTA
+// 依赖: BaseLayout, CaseCard, CTASection, src/data/cases.json, src/scripts/pages/cases.js
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import cases from '../../data/cases.json';
+
+const platforms = ['全部', '豆包', 'DeepSeek', '文心一言', '通义千问', 'Kimi'];
+---
+<BaseLayout activeNav="cases" title="服务案例 - 扑扑鹰" bodyClass="business-home">
+    <section class="page-hero-ss">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-content text-center">
+                        <h1 class="page-title">服务案例</h1>
+                        <ul class="breadcrumb-link">
+                            <li><a href="/">首页</a></li>
+                            <li class="active">服务案例</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-masonry-ss pb-110">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title style-one text-center mb-40">
+                        <span class="sub-heading"><i class="far fa-arrow-right"></i>GEO实战案例</span>
+                        <h2 class="text-anm"><span class="font-200">真实客户</span> AI 搜索可见度提升记录</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="case-filter-bar text-center mb-50" data-aos="fade-up" data-aos-duration="1000">
+                {platforms.map((p, idx) => (
+                    <button type="button" class={`case-filter-btn${idx === 0 ? ' active' : ''}`} data-filter={p}>
+                        {p}
+                    </button>
+                ))}
+            </div>
+            <div class="case-list-wrapper">
+                <div class="row" id="case-list">
+                    {cases.map((c) => (
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <CaseCard slug={c.slug} title={c.title} cover={c.cover} summary={c.summary} platform={c.platform} date={c.date} />
+                        </div>
+                    ))}
+                </div>
+                <div class="case-empty-placeholder text-center" style="display:none; padding: 60px 0;">
+                    <p>暂无该平台的案例，敬请期待。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection />
+    <script>import '../../scripts/pages/cases.js';</script>
+</BaseLayout>

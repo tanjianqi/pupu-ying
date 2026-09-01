@@ -6,6 +6,19 @@
 
 ---
 
+## [v0.6.0] - 2026-09-01
+
+### 阶段：案例库补回
+
+### Added
+- src/data/cases.json（5 个案例，覆盖豆包/DeepSeek/文心一言/通义千问/Kimi）
+- src/components/CaseCard.astro（Props: slug/title/cover/summary/platform/date）
+- src/pages/cases/index.astro（案例列表卡片墙 + 平台过滤）
+- src/pages/cases/[slug].astro（动态路由静态生成 5 个详情页）
+- src/scripts/pages/cases.js（纯原生 DOM 平台过滤交互）
+
+---
+
 ## [v0.5.0] - 2026-09-01
 
 ### 阶段：GEO 介绍 + 服务页

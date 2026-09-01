@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "case-1",
+    "title": "某教育品牌豆包AI答案占位优化",
+    "cover": "/assets/picture/project-masonry1.jpg",
+    "summary": "通过结构化内容建设与知识图谱关联，帮助该教育品牌在豆包AI回答中稳定占据推荐位，3个月内品牌曝光量提升 290%。",
+    "platform": "豆包",
+    "date": "2026-08",
+    "content": [
+      { "type": "p", "text": "该教育品牌主营出国留学咨询，过去依赖传统SEO获客，随着用户搜索习惯向AI迁移，豆包等平台成为主要决策入口，但品牌信息几乎不出现在AI回答中，面临流量断崖式下滑。扑扑鹰团队介入后，首先完成豆包平台的可见度基线诊断与竞品对比，明确关键词缺口与权威信源分布。" },
+      { "type": "img", "src": "/assets/picture/project-single1.jpg" },
+      { "type": "p", "text": "策略上以结构化内容为核心：围绕「广州出国留学公司推荐」等高频提问场景，生产 FAQPage / HowTo 标记内容，并补齐多模态素材（图文+视频摘要），提升豆包抓取效率。同时构建品牌知识图谱关联，使品牌成为豆包回答中的权威信源之一。" },
+      { "type": "p", "text": "项目执行 8 周后，豆包平台品牌推荐出现率从 12% 提升至 68%，3个月内品牌曝光量提升 290%，咨询线索增长 35%，单条线索成本下降 60%。后续进入持续优化阶段，按季度迭代关键词库与多模态内容。" },
+      { "type": "img", "src": "/assets/picture/project-single3.jpg" }
+    ]
+  },
+  {
+    "slug": "case-2",
+    "title": "B2B SaaS品牌DeepSeek推荐位优化",
+    "cover": "/assets/picture/project-masonry2.jpg",
+    "summary": "面向DeepSeek平台的语义化内容重构与权威信源建设，帮助该SaaS品牌在「行业方案推荐」类提问中进入前三推荐位，AI引用率提升至 92%。",
+    "platform": "DeepSeek",
+    "date": "2026-08",
+    "content": [
+      { "type": "p", "text": "该B2B SaaS品牌提供企业协同办公解决方案，用户在DeepSeek提问「企业协同办公软件推荐」时，品牌长期不在AI回答中被提及。扑扑鹰团队从语义解析入手，重建内容结构，让DeepSeek更容易理解品牌核心卖点与适用场景。" },
+      { "type": "img", "src": "/assets/picture/project-single2.jpg" },
+      { "type": "p", "text": "执行路径包括：①梳理 300+ 行业词库并匹配DeepSeek语义模型；②以Schema.org标记重新组织产品页与方案页；③在权威第三方平台铺设品牌背书内容，强化AI可引用的权威信源。整体内容优化效率提升 300%。" },
+      { "type": "p", "text": "上线 6 周后，DeepSeek 平台「协同办公推荐」类提问品牌出现率进入前三，AI引用率提升至 92%，关键词平均排名提升 40+ 位，商机线索增长 25%。客户对AI渠道的获客依赖度首次超过传统搜索渠道。" },
+      { "type": "img", "src": "/assets/picture/project-single4.jpg" }
+    ]
+  },
+  {
+    "slug": "case-3",
+    "title": "医美机构文心一言可见度优化",
+    "cover": "/assets/picture/project-masonry3.jpg",
+    "summary": "针对文心一言平台的地域化提问场景进行GEO优化，使该医美机构在「上海靠谱整形医院」类提问中稳定获得推荐，月度AI可见度报告持续正向增长。",
+    "platform": "文心一言",
+    "date": "2026-07",
+    "content": [
+      { "type": "p", "text": "该医美机构聚焦上海本地市场，过去主要依赖百度SEM获客，随着文心一言接入百度搜索结果，AI回答中的「上海有哪些靠谱的整形医院」类提问成为新的流量入口。扑扑鹰团队以地域GEO为核心拆分运营，针对上海本地消费偏好与监管要求做差异化包装。" },
+      { "type": "img", "src": "/assets/picture/project-single1.jpg" },
+      { "type": "p", "text": "策略上兼顾品牌统一性与本地化差异：核心LOGO、品牌价值观、slogan主干保持统一；视觉色调、宣传文案、服务承诺做地域化调整。同时铺设本地权威信源内容，强化文心一言对品牌的可信度评分。" },
+      { "type": "p", "text": "项目执行 10 周后，文心一言平台上海地域类提问品牌推荐出现率从 8% 提升至 55%，月度AI可见度报告连续3个月正向增长，本地咨询转化率提升 40%，AI渠道获客占比从 5% 提升至 28%。" },
+      { "type": "img", "src": "/assets/picture/project-single3.jpg" }
+    ]
+  },
+  {
+    "slug": "case-4",
+    "title": "本地服务品牌通义千问曝光优化",
+    "cover": "/assets/picture/project-masonry4.jpg",
+    "summary": "通过多模态内容适配与算法更新48小时内响应机制，帮助该本地服务品牌在通义千问平台稳定曝光，2个月内品牌曝光量提升 290%。",
+    "platform": "通义千问",
+    "date": "2026-07",
+    "content": [
+      { "type": "p", "text": "该本地服务品牌主营深圳装修服务，通义千问接入淘宝天猫生态后，「深圳本地最好的装修公司哪家好」类提问直接连接用户决策。扑扑鹰团队以多模态内容为核心，覆盖图文、视频、案例数据，提升通义千问抓取效率至 95% 以上。" },
+      { "type": "img", "src": "/assets/picture/project-single2.jpg" },
+      { "type": "p", "text": "执行重点：①部署 Schema.org 标记与 HTML5 语义化代码；②铺设 300+ 行业词库与本地化关键词；③建立算法更新48小时内适配机制，确保通义千问规则变化时品牌可见度不下降。整体适配效率超同行 30%。" },
+      { "type": "p", "text": "上线 2 个月内，通义千问平台品牌曝光量提升 290%，本地咨询线索增长 50%，单条线索成本下降 65%，客户续约率超 90%。后续按月输出AI可见度报告，持续优化知识图谱关联度。" },
+      { "type": "img", "src": "/assets/picture/project-single4.jpg" }
+    ]
+  },
+  {
+    "slug": "case-5",
+    "title": "消费电子品牌Kimi推荐优化",
+    "cover": "/assets/picture/project-single1.jpg",
+    "summary": "帮助该消费电子品牌在Kimi平台的「AI耳机哪个品牌质量最好」类提问中获得推荐位，AI答案嵌入成功率达 92%，关键词排名平均提升 40+ 位。",
+    "platform": "Kimi",
+    "date": "2026-06",
+    "content": [
+      { "type": "p", "text": "该消费电子品牌主推AI智能耳机产品，Kimi平台用户提问「AI耳机哪个品牌质量最好？」时，品牌长期被竞品压制。扑扑鹰团队通过竞品AI可见度对比报告，精准定位品牌在Kimi平台的权威性缺口与内容空白。" },
+      { "type": "img", "src": "/assets/picture/project-single3.jpg" },
+      { "type": "p", "text": "策略上聚焦权威性内容建设：①生产结构化产品评测与对比内容，强化Kimi可引用的权威信源；②铺设第三方权威平台背书；③部署紧急响应与优化调整机制，48小时内适配算法变化。AI答案嵌入成功率达 92%。" },
+      { "type": "p", "text": "项目执行 7 周后，Kimi 平台「AI耳机推荐」类提问品牌出现率进入前三，关键词排名平均提升 40+ 位，电商引流转化率提升 30%，客户对AI渠道的获客依赖度首次超过 40%。后续按季度迭代知识库与技术方案。" },
+      { "type": "img", "src": "/assets/picture/project-single2.jpg" }
+    ]
+  }
+]

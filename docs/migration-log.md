@@ -13,8 +13,8 @@
 | [ ] | about.html | src/pages/about.astro | v0.8.0 |
 | [x] | geo.html | src/pages/geo.astro | v0.5.0 |
 | [x] | geoservice.html + 服务.html | src/pages/geoservice.astro | v0.5.0 |
-| [ ] | 案例列表.html | src/pages/cases/index.astro（补回） | v0.6.0 |
-| [ ] | 案例详情.html | src/pages/cases/[slug].astro（补回） | v0.6.0 |
+| [x] | 案例列表.html | src/pages/cases/index.astro（补回） | v0.6.0 |
+| [x] | 案例详情.html | src/pages/cases/[slug].astro（补回） | v0.6.0 |
 | [ ] | —（注释中） | src/pages/rank.astro（补回） | v0.7.0 |
 | [ ] | news.html | src/pages/news.astro | v0.8.0 |
 | [ ] | news-art.html | src/pages/news/[slug].astro | v0.8.0 |
@@ -94,7 +94,7 @@
 | [x] | Nav.astro | v0.3.0 |
 | [x] | Footer.astro | v0.3.0 |
 | [x] | ServiceCard.astro | v0.5.0 |
-| [ ] | CaseCard.astro | v0.6.0 |
+| [x] | CaseCard.astro | v0.6.0 |
 | [x] | CTASection.astro | v0.4.0 |
 
 ---

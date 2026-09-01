@@ -1,0 +1,21 @@
+---
+// 组件: CaseCard
+// 职责: 渲染单张服务案例卡片（sasly-project-item style-three 结构：封面 + hover-overlay 标题 + 平台分类 + 跳转入口）
+// 依赖: theme.css（卡片样式）、flaticon 图标
+// Props: slug(string) / title(string) / cover(string, 封面图路径) / summary(string, 卡片不展示但保留备用) / platform(string, 平台分类标签) / date(string, 保留备用)
+const { slug, title, cover, platform, date } = Astro.props;
+---
+<div class="sasly-project-item style-three mb-30" data-platform={platform} data-date={date}>
+    <div class="thumbnail">
+        <img src={cover} alt={title}>
+        <div class="hover-overlay">
+            <div class="content">
+                <h4 class="title"><a href={`/cases/${slug}`}>{title}</a></h4>
+                <div class="project-categories">
+                    <a href={`/cases/${slug}`}>{platform}</a>
+                </div>
+            </div>
+            <a href={`/cases/${slug}`} class="icon-btn"><i class="far fa-arrow-right"></i></a>
+        </div>
+    </div>
+</div>
