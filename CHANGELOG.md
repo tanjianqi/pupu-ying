@@ -6,6 +6,22 @@
 
 ---
 
+## [v0.2.0] - 2026-09-01
+
+### 阶段：Astro 脚手架
+
+### Added
+- npm init + 安装 astro（package.json name=pupu-ying，因 npm 拒绝中文目录名）
+- astro.config.mjs（site=https://www.ppypaper.com，static 输出）
+- package.json scripts（dev/build/preview/astro）
+- src/layouts/BaseLayout.astro 空壳（Props 接口定义齐全）
+- src/pages/index.astro 临时首页
+
+### Changed
+- README.md 移除 v0.1.0 阶段注释
+
+---
+
 ## [v0.1.0] - 2026-09-01
 
 ### 阶段：基线

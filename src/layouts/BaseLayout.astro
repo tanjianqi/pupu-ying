@@ -1,0 +1,31 @@
+---
+// 组件: BaseLayout
+// 职责: 页面骨架 <html><head><body>，装载全局 CSS/JS、Header、Footer
+// 依赖: （v0.2.0 暂无，v0.3.0 起引入 Header/Footer）
+// Props:
+//   title (string)       - <title> 文本
+//   description (string) - meta description
+//   activeNav (string)   - 当前高亮菜单 key（v0.3.0 起）
+//   bodyClass (string)   - <body> class
+//   pageStyle (string)   - 页面局部 CSS 路径（v0.4.0 起）
+//   pageScript (string)  - 页面局部 JS 路径（v0.4.0 起）
+const {
+  title = '扑扑鹰 GEO+SEO优化 - 全域AI搜索获客系统',
+  description = '扑扑鹰 - 专业GEO+SEO搜索引擎优化服务，助品牌抢占AI搜索时代增量流量。',
+  bodyClass = 'business-home',
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>{title}</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+  </head>
+  <body class={bodyClass}>
+    <slot />
+  </body>
+</html>
