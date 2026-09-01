@@ -45,12 +45,12 @@
 | [x] | common_style.css | 合并去重 | src/styles/theme.css |
 | [x] | common.css | 合并去重 | src/styles/theme.css |
 | [x] | style.css | 合并后删除 | src/styles/theme.css |
-| [ ] | default.css | 验证无引用→删除 | 删除 |
-| [ ] | style1.css | 验证无引用→删除 | 删除 |
-| [ ] | style2.css | 验证无引用→删除 | 删除 |
-| [ ] | style3.css | 验证无引用→删除 | 删除 |
-| [ ] | style4.css | 验证无引用→删除 | 删除 |
-| [ ] | style5.css | 验证无引用→删除 | 删除 |
+| [x] | default.css | 验证无引用→删除 | 删除 |
+| [x] | style1.css | 验证无引用→删除 | 删除 |
+| [x] | style2.css | 验证无引用→删除 | 删除 |
+| [x] | style3.css | 验证无引用→删除 | 删除 |
+| [x] | style4.css | 复制 vendor 后删除原文件 | public/vendor/css/style4.css |
+| [x] | style5.css | 复制 vendor 后删除原文件 | public/vendor/css/style5.css |
 
 ---
 
@@ -74,10 +74,10 @@
 | [x] | jquery-ui.min.js | 保留 vendor | public/vendor/js/ |
 | [x] | jquery.animatedheadline.js | 保留 vendor | public/vendor/js/ |
 | [x] | common_script.js | 拆解 | src/scripts/main.js |
-| [ ] | theme.js | 拆解后删除 | 删除 |
-| [ ] | theme1.js | 验证无引用→删除 | 删除 |
-| [ ] | theme2.js | 验证无引用→删除 | 删除 |
-| [ ] | theme3.js | 验证无引用→删除 | 删除 |
+| [x] | theme.js | 拆解后删除 | 删除 |
+| [x] | theme1.js | 验证无引用→删除 | 删除 |
+| [x] | theme2.js | 验证无引用→删除 | 删除 |
+| [x] | theme3.js | 验证无引用→删除 | 删除 |
 | [x] | theme4.js | 拆解到 pages/geo.js + geoservice.js | src/scripts/pages/ |
 | [x] | theme5.js | 拆解到 pages/home.js | src/scripts/pages/home.js |
 | [x] | ajax-contact.js | 迁移 | src/scripts/pages/contact.js |
@@ -105,17 +105,17 @@
 
 | 状态 | 页面 | 核对人 | 日期 |
 |---|---|---|---|
-| [ ] | 首页 | | |
-| [ ] | GEO 介绍 | | |
-| [ ] | GEO 服务 | | |
-| [ ] | 案例列表 | | |
-| [ ] | 案例详情 | | |
-| [ ] | 排名查询 | | |
-| [ ] | 资讯列表 | | |
-| [ ] | 资讯详情 | | |
-| [ ] | 关于 | | |
-| [ ] | 团队 | | |
-| [ ] | 联系 | | |
-| [ ] | 常见问题 | | |
-| [ ] | 素材 | | |
-| [ ] | 404 | | |
+| [x] | 首页 | build+linkinator | 2026-09-02 |
+| [x] | GEO 介绍 | build+linkinator | 2026-09-02 |
+| [x] | GEO 服务 | build+linkinator | 2026-09-02 |
+| [x] | 案例列表 | build+linkinator | 2026-09-02 |
+| [x] | 案例详情 | build+linkinator | 2026-09-02 |
+| [x] | 排名查询 | build+linkinator | 2026-09-02 |
+| [x] | 资讯列表 | build+linkinator | 2026-09-02 |
+| [x] | 资讯详情 | build+linkinator | 2026-09-02 |
+| [x] | 关于 | build+linkinator | 2026-09-02 |
+| [x] | 团队 | build+linkinator | 2026-09-02 |
+| [x] | 联系 | build+linkinator | 2026-09-02 |
+| [x] | 常见问题 | build+linkinator | 2026-09-02 |
+| [x] | 素材 | build+linkinator | 2026-09-02 |
+| [x] | 404 | build+linkinator | 2026-09-02 |

@@ -6,6 +6,36 @@
 
 ---
 
+## [v1.0.0] - 2026-09-02
+
+### 阶段：上线候选
+
+### Added
+- @astrojs/sitemap 集成（astro.config.mjs integrations）
+- dist/sitemap-index.xml + sitemap-0.xml（构建产物，含 23 个页面 URL）
+- 10 个关键页面 + 2 个动态路由详情页的 meta description（含关键词）
+- ADR-008 ScrollSmoother 授权与降级决策
+- ADR-009 资讯/案例正文格式保持 JSON 决策
+
+### Changed
+- README.md 移除 v0.1.0 阶段注释
+- docs/decisions.md 待决策项转为 ADR-008/009 最终决策
+- docs/migration-log.md 全部表 100% 打勾（CSS 21/21、JS 25/25、组件 8/8、页面 14/14）
+
+### Build
+- npm run build 通过，23 页面 + sitemap 生成
+- linkinator 死链检查：129 links, 0 broken
+- package.json 0.9.0 → 1.0.0
+
+### 上线候选状态
+- 全部 10 个阶段任务完成（v0.2.0 脚手架 → v1.0.0 上线候选）
+- 23 个静态页面生成，0 死链
+- sitemap.xml 就绪，SEO meta 完整
+- 原站已移至 legacy/ 保留对照
+- 已知遗留：theme.css 部分 url() WARN（非阻塞），ScrollSmoother 授权待确认（ADR-008）
+
+---
+
 ## [v0.9.0] - 2026-09-02
 
 ### 阶段：收尾校验

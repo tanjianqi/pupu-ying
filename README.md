@@ -40,8 +40,6 @@ npm run preview  # 预览构建产物
 └─ package.json
 ```
 
-> v0.1.0 阶段 `src/` `public/` 尚未建立，当前为原站 14 个 HTML + static/ 结构。
-
 ## 版本规范
 
 - **版本号**: SemVer 严格 + 阶段化节奏（`v0.1.0` 基线 → `v1.0.0` 上线候选）

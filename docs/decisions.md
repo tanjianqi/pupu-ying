@@ -88,7 +88,20 @@
 
 ---
 
-## 待决策项（迁移过程中记录）
+## ADR-008 · ScrollSmoother 授权与降级决策
 
-- **ScrollSmoother 授权**: GSAP Club 付费插件，需核对授权。若无授权则降级为免费 ScrollTrigger 实现平滑滚动。（v0.4.0 首页迁移时决策）
-- **资讯/案例正文格式**: 默认 JSON，v1.0 前按需切 MDX（Content Collections）。
+- **状态**: 已采纳（2026-09-02，v1.0.0 定稿）
+- **背景**: `public/vendor/js/ScrollSmoother.min.js` 为 GSAP Club 付费插件，需核对授权。v0.4.0 首页迁移时已加载该文件。
+- **决策**: 暂保留 ScrollSmoother.min.js 加载（原站已含此文件），但全站滚动平滑改由 ScrollTrigger + 原生 CSS scroll-behavior 实现，不再依赖 ScrollSmoother API。v1.0.0 起标注为「待授权确认」，若正式上线前未取得授权则删除该 vendor 文件。
+- **理由**: 保留文件不影响功能（已不调用其 API），删除需验证无副作用；先上线候选，授权问题后续处理。
+- **后果**: 上线候选版本含未授权 vendor 文件，正式部署前必须确认或删除。
+
+---
+
+## ADR-009 · 资讯/案例正文格式保持 JSON
+
+- **状态**: 已采纳（2026-09-02，v1.0.0 定稿）
+- **背景**: 资讯（news.json）与案例（cases.json）正文当前用 JSON 数组结构（content blocks: type=p/img）。
+- **决策**: v1.0.0 保持 JSON 驱动，不引入 MDX / Content Collections。
+- **理由**: 当前 5 案例 + 6 资讯体量小，JSON 编辑足够；引入 MDX 增加构建复杂度与团队学习成本，YAGNI。
+- **后果**: 后续内容规模增长或需富文本编辑时再评估迁移 MDX。

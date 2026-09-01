@@ -27,7 +27,7 @@ const next = idx < allNews.length - 1 ? allNews[idx + 1] : null;
 // 标签（从分类生成）
 const tags = ['Business', 'Consulting', 'Ai SEO', post.category];
 ---
-<BaseLayout activeNav="news" title={`${post.title} - 扑扑鹰`} bodyClass="business-home">
+<BaseLayout activeNav="news" title={`${post.title} - 扑扑鹰`} description={post.summary} bodyClass="business-home">
     <section class="page-hero-ss">
         <div class="container">
             <div class="row">

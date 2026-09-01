@@ -10,7 +10,7 @@ import news from '../data/news.json';
 // 从 news.json 抽取去重分类
 const categories = ['全部', ...Array.from(new Set(news.map((n) => n.category)))];
 ---
-<BaseLayout activeNav="news" title="GEO干货资讯 - 扑扑鹰" bodyClass="business-home">
+<BaseLayout activeNav="news" title="GEO干货资讯 - 扑扑鹰" description="GEO干货资讯 - AI搜索优化行业趋势、平台攻略、效果分析。扑扑鹰专业分享GEO优化实战经验与最新动态。" bodyClass="business-home">
 
     <section class="page-hero-ss">
         <div class="container">

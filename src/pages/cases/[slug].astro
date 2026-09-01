@@ -18,7 +18,7 @@ export function getStaticPaths() {
 
 const { caseData } = Astro.props;
 ---
-<BaseLayout activeNav="cases" title={`${caseData.title} - 扑扑鹰`} bodyClass="business-home">
+<BaseLayout activeNav="cases" title={`${caseData.title} - 扑扑鹰`} description={caseData.summary} bodyClass="business-home">
     <section class="page-hero-ss">
         <div class="container">
             <div class="row">
