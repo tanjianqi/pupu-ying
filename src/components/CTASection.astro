@@ -1,0 +1,52 @@
+---
+// 组件: CTASection
+// 职责: 首页底部 CTA（行动召唤）区块 —— 主标题 + 描述 + 咨询按钮 + 右侧两个卖点图标卡
+// 依赖: /assets/image/cta-bg1.jpg（背景图）、flaticon 图标、AOS 动画、theme-btn
+// Props: title(string, 默认 "免费获取优化方案") / desc(string, 默认 "留下需求，扑扑鹰团队24h内出具专属GEO优化方案")
+const {
+  title = '免费获取优化方案',
+  desc = '留下需求，扑扑鹰团队24h内出具专属GEO优化方案',
+} = Astro.props;
+---
+<section class="cta-sb bg_cover p-r z-1 pt-90 pb-40" style="background-image: url(/assets/image/cta-bg1.jpg);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-8">
+                <!--=== Section Content Box ===-->
+                <div class="section-content-box mb-50">
+                    <div class="section-title text-white mb-55">
+                        <h2 class="text-anm"><span class="font-200">{title}</span></h2>
+                        <p>{desc}</p>
+                    </div>
+                    <div class="cta-button" data-aos="fade-up" data-aos-duration="1200">
+                        <a href="/contact" class="theme-btn style-one">免费咨询诊断<i class="far fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="section-content-box mb-40">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-6">
+                            <!--=== Iconic Box ===-->
+                            <div class="sasly-iconic-box style-two mb-10" data-aos="fade-down" data-aos-duration="1000">
+                                <div class="content">
+                                    <h4 class="title"><i class="flaticon-award-symbol"></i><span>行业领先的专业团队</span></h4>
+                                    <p>GEO解决方案凭借卓越的优化能力和创新精神，赢得500+品牌信赖 </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-md-6">
+                            <!--=== Iconic Box ===-->
+                            <div class="sasly-iconic-box style-two mb-10" data-aos="fade-up" data-aos-duration="1300">
+                                <div class="content">
+                                    <h4 class="title"><i class="flaticon-professional-development"></i><span>专业团队全程支持</span></h4>
+                                    <p>GEO解决方案凭借卓越的优化能力和创新精神，赢得500+品牌信赖</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

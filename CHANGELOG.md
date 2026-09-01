@@ -6,6 +6,28 @@
 
 ---
 
+## [v0.4.0] - 2026-09-01
+
+### 阶段：首页迁移
+
+### Added
+- src/components/CTASection.astro（通用 CTA 区块组件，Props: title/desc）
+- src/pages/index.astro 首页正式迁移（5 个 section：hero/what-we/about/core-features/blogs + CTA）
+- src/styles/theme.css 填充（5 个原 CSS 合并去重，约 10644 行）
+- src/styles/pages/home.css（首页专属样式，约 269 行）
+- src/scripts/pages/home.js（从 theme5.js 迁移首页脚本）
+
+### Changed
+- 删除 3 个注释 section（case-study-sb / testimonial-sb / key-features-sb）
+- 路径全替换：static/picture/ → /assets/picture/，static/image/ → /assets/image/
+- 内链全替换：xxx.html → /xxx
+- migration-log: index 页面/CTASection/5个CSS/common_script.js/theme5.js 打勾
+
+### Known Issues
+- theme.css 中非首页 selector 的相对 url() 引起 Vite WARN，不影响首页渲染，v0.5.0+ 处理
+
+---
+
 ## [v0.3.0] - 2026-09-01
 
 ### 阶段：布局组件

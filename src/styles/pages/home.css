@@ -1,0 +1,268 @@
+/* === 扑扑鹰 home.css ===
+   职责: 首页专属样式（hero-sb / what-we-sb / about-sb / core-features-sb / blogs-sb / cta-sb 等 section 及其响应式 @media 规则）
+   依赖: theme.css（全局通用样式）+ vendor CSS
+   来源: v0.4.0 首页迁移时从原 style-ppy.css / style.css 中按首页 section 选择器抽取 */
+
+
+/* Footer CSS */
+.cta-sb:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(25.89%, rgba(31, 31, 31, 0.3)), color-stop(92.7%, #1F1F1F));
+  background: linear-gradient(180deg, rgba(31, 31, 31, 0.3) 25.89%, #1F1F1F 92.7%);
+}
+
+@media screen and (max-width: 991px) {
+  .cta-sb .section-content-box {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .cta-sb .section-content-box {
+    text-align: center;
+  }
+}
+
+
+/* Header CSS */
+/* Hero CSS */
+.hero-sb {
+  padding: 295px 0 95px;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .hero-sb {
+    padding: 195px 0 95px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .hero-sb {
+    padding: 195px 0 95px;
+  }
+}
+
+.hero-sb .hero-content {
+  position: relative;
+}
+
+@media screen and (max-width: 991px) {
+  .hero-sb .hero-content {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .hero-sb .hero-content {
+    text-align: center;
+  }
+}
+
+.hero-sb .hero-content .sub-heading {
+  border-color: rgba(68, 241, 140, 0.31);
+  margin-bottom: 25px;
+}
+
+.hero-sb .hero-content h1 {
+  font-size: 150px;
+  letter-spacing: -4.5px;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.hero-sb .hero-content h1 span {
+  display: block;
+}
+
+.hero-sb .hero-content h1 span.light {
+  font-weight: 200;
+}
+
+@media (min-width: 1200px) and (max-width: 1450px) {
+  .hero-sb .hero-content h1 {
+    font-size: 120px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .hero-sb .hero-content h1 {
+    font-size: 100px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .hero-sb .hero-content h1 {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-sb .hero-content h1 {
+    font-size: 65px;
+    line-height: 1.3;
+  }
+}
+
+.hero-sb .hero-content p {
+  margin-bottom: 35px;
+}
+
+.hero-sb .hero-content p span {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+@media screen and (max-width: 991px) {
+  .hero-sb .hero-content p {
+    margin: 0 auto 35px;
+    max-width: 570px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .hero-sb .hero-content p {
+    margin: 0 auto 35px;
+    max-width: 570px;
+  }
+}
+
+.hero-sb .hero-content .theme-btn {
+  margin-bottom: 70px;
+}
+
+.hero-sb .hero-content .hero-image {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 670px;
+  height: 700px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 991px) {
+  .hero-sb .hero-content .hero-image {
+    position: relative;
+    top: auto;
+    left: auto;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-sb .hero-content .hero-image {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .hero-sb .hero-content .hero-image {
+    position: relative;
+    top: auto;
+    left: auto;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+.hero-sb .hero-content .hero-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}
+
+@media (min-width: 1200px) and (max-width: 1450px) {
+  .hero-sb .hero-content .hero-image {
+    width: 525px;
+    height: 600px;
+  }
+}
+
+
+.what-we-sb {
+  border-radius: 50px;
+  margin: 0 30px;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .what-we-sb {
+    margin: 0 15px;
+  }
+}
+
+
+.about-sb .experience-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.about-sb .experience-box .number {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  font: 600 100px var(--heading-font);
+  color: var(--heading-color);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-right: 20px;
+}
+
+.about-sb .experience-box .duration {
+  font: 600 16px var(--heading-font);
+  padding: 25px 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  line-height: 27px;
+}
+
+.about-sb .section-content-box {
+  max-width: 475px;
+}
+
+.about-sb .section-content-box ul.check-list {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 767px) {
+  .about-sb .section-content-box ul.check-list {
+    margin-bottom: 20px;
+  }
+}
+
+
+.core-features-sb {
+  background-color: var(--gray-color);
+  border-radius: 50px;
+  margin: 0 30px;
+}
+
+@media (max-width: 767px) {
+  .core-features-sb {
+    border-radius: 15px;
+    margin: 0 10px;
+  }
+}
+
+
+.cta-sb:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(25.89%, rgba(31, 31, 31, 0.3)), color-stop(92.7%, #1F1F1F));
+  background: linear-gradient(180deg, rgba(31, 31, 31, 0.3) 25.89%, #1F1F1F 92.7%);
+}

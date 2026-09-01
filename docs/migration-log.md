@@ -9,7 +9,7 @@
 
 | 状态 | 原文件 | 目标路由 | 版本 |
 |---|---|---|---|
-| [ ] | index.html | src/pages/index.astro | v0.4.0 |
+| [x] | index.html | src/pages/index.astro | v0.4.0 |
 | [ ] | about.html | src/pages/about.astro | v0.8.0 |
 | [ ] | geo.html | src/pages/geo.astro | v0.5.0 |
 | [ ] | geoservice.html + 服务.html | src/pages/geoservice.astro | v0.5.0 |
@@ -40,11 +40,11 @@
 | [x] | all.min.css | 保留 vendor | public/vendor/css/ |
 | [x] | flaticon_sasly.css | 保留 vendor | public/vendor/css/ |
 | [x] | css2.css | 保留 vendor | public/vendor/css/ |
-| [ ] | style-ppy.css | 合并去重 | src/styles/theme.css |
-| [ ] | style-ppy1.css | 合并去重 | src/styles/theme.css |
-| [ ] | common_style.css | 合并去重 | src/styles/theme.css |
-| [ ] | common.css | 合并去重 | src/styles/theme.css |
-| [ ] | style.css | 合并后删除 | src/styles/theme.css |
+| [x] | style-ppy.css | 合并去重 | src/styles/theme.css |
+| [x] | style-ppy1.css | 合并去重 | src/styles/theme.css |
+| [x] | common_style.css | 合并去重 | src/styles/theme.css |
+| [x] | common.css | 合并去重 | src/styles/theme.css |
+| [x] | style.css | 合并后删除 | src/styles/theme.css |
 | [ ] | default.css | 验证无引用→删除 | 删除 |
 | [ ] | style1.css | 验证无引用→删除 | 删除 |
 | [ ] | style2.css | 验证无引用→删除 | 删除 |
@@ -73,13 +73,13 @@
 | [x] | imagesloaded.min.js | 保留 vendor | public/vendor/js/ |
 | [x] | jquery-ui.min.js | 保留 vendor | public/vendor/js/ |
 | [x] | jquery.animatedheadline.js | 保留 vendor | public/vendor/js/ |
-| [ ] | common_script.js | 拆解 | src/scripts/ |
+| [x] | common_script.js | 拆解 | src/scripts/main.js |
 | [ ] | theme.js | 拆解后删除 | 删除 |
 | [ ] | theme1.js | 验证无引用→删除 | 删除 |
 | [ ] | theme2.js | 验证无引用→删除 | 删除 |
 | [ ] | theme3.js | 验证无引用→删除 | 删除 |
 | [ ] | theme4.js | 验证无引用→删除 | 删除 |
-| [ ] | theme5.js | 验证无引用→删除 | 删除 |
+| [x] | theme5.js | 拆解到 pages/home.js | src/scripts/pages/home.js |
 | [ ] | ajax-contact.js | 迁移 | src/scripts/pages/contact.js |
 
 ---
@@ -95,7 +95,7 @@
 | [x] | Footer.astro | v0.3.0 |
 | [ ] | ServiceCard.astro | v0.5.0 |
 | [ ] | CaseCard.astro | v0.6.0 |
-| [ ] | CTASection.astro | v0.4.0 |
+| [x] | CTASection.astro | v0.4.0 |
 
 ---
 

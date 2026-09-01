@@ -1,9 +1,343 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import '../styles/pages/home.css';
 ---
-<BaseLayout activeNav="home">
-  <section style="padding:120px 20px;text-align:center">
-    <h1>头尾组件就绪 (v0.3.0)</h1>
-    <p>检查顶部联系条、主菜单（含补回的案例/排名入口）、页脚是否正常。</p>
-  </section>
+<BaseLayout activeNav="home" title="扑扑鹰 GEO+SEO优化 - 全域AI搜索获客系统">
+    <section class="hero-sb">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7">
+                    <!--===  Hero Content  ===-->
+                    <div class="hero-content">
+                        <span class="sub-heading"><i class="far fa-arrow-right"></i>中国首家专注GEO优化的技术服务商</span>
+                        <h1 class="split"><span class="font-200">新一代</span><span>品牌营销</span> 解决方案</h1>
+                    </div>
+                </div>
+                <div class="col-xl-5">
+                    <!--===  Hero Content  ===-->
+                    <div class="hero-content">
+                        <div class="text-box" data-aos="fade-down" data-aos-duration="1800">
+                            <p>在AI搜索时代，让您的<span>品牌信息</span>被精准触达。每一份内容，都是与<span>用户建立连接的桥梁</span>，GEO优化为您开启智能搜索新篇章。</p>
+                            <a href="/contact" class="theme-btn style-two">免费获取优化方案<i class="far fa-angle-double-right"></i></a>
+                        </div>
+                        <div class="hero-image" data-aos="fade-up" data-aos-duration="2000">
+                            <img src="/assets/picture/hero-img1.jpg" alt="扑扑鹰">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="what-we-sb">
+        <div class="wrapper primary-bg pt-60 pb-100">
+            <!--=== Animated Big Text ===-->
+            <div class="animated-big-text pb-75">
+                <div class="headline-wrap style-one">
+                    <span class="marquee-wrap">
+                        <span class="marquee-inner left">
+                            <span class="marquee-item"><b>  扑扑鹰·专业领先的GEO优化服务商。</b></span>
+                            <span class="marquee-item"><b>让你的品牌，成为AI的答案</b></span>
+                        </span>
+                        <span class="marquee-inner left">
+                            <span class="marquee-item"><b>  扑扑鹰·专业领先的GEO优化服务商。</b></span>
+                            <span class="marquee-item"><b>让你的品牌，成为AI的答案</b></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title style-one text-white text-center mb-60" data-aos="fade-up" data-aos-duration="1500">
+                            <span class="sub-heading"><i class="far fa-arrow-right"></i>为什么要做GEO优化</span>
+                            <h4 class="text-anm"><span class="font-200">GEO是面向 AI 搜索引擎（如豆包、kimi、Deepseek、ChatGPT 等）的优化方式 助力品牌提升展示效果与可见度，借助 AI 即时生成结构化、多模态的回答</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-md-6 col-sm-12">
+                        <div class="sasly-info-box style-one mb-30" data-aos="fade-up">
+                            <div class="content">
+                                <div class="number">01</div>
+                                <h4 class="title">大幅提升品牌形象</h4>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;让你的品牌成为AI的答案，提升品牌权威性和可信度，通过GEO，企业可以确保其品牌内容被AI准确理解和引用，从而在AI生成的答案中占据更有利的位置。
+                                    <br/>这有助于提升品牌在用户心目中的权威性和可信度，增强用户对品牌的信任。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-12">
+                        <div class="sasly-info-box style-one mb-30" data-aos="fade-up" data-aos-duration="1800">
+                            <div class="content">
+                                <div class="number">02</div>
+                                <h4 class="title">抢占AI流量入口</h4>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;Gartner的研究，传统搜索引擎流量预计在2024-2026年间下降<b class="highlight-number">25%↓</b>，而同期AI驱动的内容交互量将增长<b class="highlight-number-d">300%↑</b><br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;这意味着，未来越来越多的用户将通过AI平台获取信息，企业若不重视GEO，将失去大量潜在流量和用户。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-12">
+                        <div class="sasly-info-box style-one mb-30" data-aos="fade-up" data-aos-duration="2100">
+                            <div class="content">
+                                <div class="number">03</div>
+                                <h4 class="title">营销获客降本增效</h4>
+                                <p style="line-height: normal;"><b>精准触达：</b><br/>
+                                    AI主动推荐品牌内容，减少无效曝光，获客成本直降<b class="highlight-number">60%-70%↓</b>；<br/>
+                                    <b>零点击转化：</b><br/>
+                                    用户直接获取品牌权威答案，提升信任度与转化率，流量质量提升<b class="highlight-number-d">200%↑</b>；<br/>
+                                    <b>动态优化：</b><br/>
+                                    实时适配用户需求与算法变化，降低长期投放依赖，ROI提升<b class="highlight-number-d">150%↑</b>。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-sb pt-130 pb-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!--=== Section Title  ===-->
+                    <div class="section-title style-one mb-60">
+                        <span class="sub-heading"><i class="far fa-arrow-right"></i>为什么选择扑扑鹰？</span>
+                        <h2 class="text-anm"><span class="font-200">专业GEO团队，为您定制</span>AI搜索时代的品牌增长策略</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-xl-5">
+                    <!--=== Section Content Box ===-->
+                    <div class="section-content-box style-one mb-55">
+                        <div class="experience-box mb-60" data-aos="fade-up">
+                            <div class="number">
+                                8+
+                            </div>
+                            <div class="duration">
+                                年团队行业深耕经验，<br>服务客户超500+
+                            </div>
+                        </div>
+                        <p class="mb-35" data-aos="fade-up">专业团队深入了解您的品牌目标和市场需求，制定针对性GEO策略，驱动品牌在AI搜索中的可见度与影响力。无论您是想提升品牌知名度还是获取更多精准流量。</p>
+                        <div class="row">
+                            <div class="col-sm-6" data-aos="fade-up">
+                                <ul class="check-list style-one">
+                                    <li><i class="fas fa-badge-check"></i>AI平台覆盖度检测</li>
+                                    <li><i class="fas fa-badge-check"></i>竞品AI可见度对比报告</li>
+                                    <li><i class="fas fa-badge-check"></i>知识图谱关联度诊断</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6" data-aos="fade-up">
+                                <ul class="check-list style-one">
+                                    <li><i class="fas fa-badge-check"></i>月度AI可见度报告</li>
+                                    <li><i class="fas fa-badge-check"></i>权威性内容建设指导</li>
+                                    <li><i class="fas fa-badge-check"></i>紧急响应与优化调整</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="about-button" data-aos="fade-up">
+                            <a href="/contact" class="theme-btn style-two">立即检测品牌可见性 <i class="far fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-7">
+                    <!--=== Iconic Box ===-->
+                    <div class="section-image-box mb-55" data-aos="fade-left">
+                        <img src="/assets/picture/about-1.jpg" class="rounded-3" alt="扑扑鹰">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="animated-big-text">
+            <div class="headline-wrap style-two">
+                <span class="marquee-wrap">
+                    <span class="marquee-inner left">
+                        <span class="marquee-item"><b>全方位GEO策略，助您实现品牌搜索可见度最大化</b></span>
+                    </span>
+                    <span class="marquee-inner left">
+                        <span class="marquee-item"><b>全方位GEO策略，助您实现品牌搜索可见度最大化</b></span>
+                    </span>
+                    <span class="marquee-inner left">
+                        <span class="marquee-item"><b>全方位GEO策略，助您实现品牌搜索可见度最大化</b></span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="core-features-sb">
+        <div class="features-wrapper main-gray-bg pt-130 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--=== Section Title  ===-->
+                        <div class="section-title style-one text-center mb-60">
+                            <span class="sub-heading"><i class="far fa-arrow-right"></i>扑扑鹰GEO服务核心优势</span>
+                            <h2 class="text-anm"><span class="font-200">以创新驱动技术，引领</span>AI搜索优化新未来</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6">
+                        <!--=== Iconic Box ===-->
+                        <div class="sasly-card-item style-one mb-30" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="content-box">
+                                <div class="icon">
+                                    <i class="flaticon-collaboration"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>技术领先</h5>
+                                    <p>自研智能语义解析系统，覆盖DeepSeek、豆包、文心一言、腾讯元宝等主流平台，多模态内容生成效率提升<b class="highlight-number">300%</b>，适配效率超同行30%，可实现2个月内品牌曝光量提升<b class="highlight-number-d">290%↑</b>。</p>
+                                </div>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="/assets/picture/feature1.jpg" alt="扑扑鹰">
+                                <div class="hover-overlay">
+                                    <div class="hover-content">
+                                        <a href="/contact" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <!--=== Iconic Box ===-->
+                        <div class="sasly-card-item style-one mb-30" data-aos="fade-up" data-aos-duration="1300">
+                            <div class="content-box">
+                                <div class="icon">
+                                    <i class="flaticon-iteration"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>经验丰富</h5>
+                                    <p>10年+行业沉淀，服务超2000+品牌客户，覆盖100+细分领域，AI答案嵌入成功率达<b class="highlight-number">92%</b>，关键词排名平均提升<b class="highlight-number-d">40+</b>位，帮助客户商机线索增长<b class="highlight-number-d">25%</b>。</p>
+                                </div>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="/assets/picture/feature2.jpg" alt="扑扑鹰">
+                                <div class="hover-overlay">
+                                    <div class="hover-content">
+                                        <a href="/contact" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <!--=== Iconic Box ===-->
+                        <div class="sasly-card-item style-one mb-30" data-aos="fade-up" data-aos-duration="1700">
+                            <div class="content-box">
+                                <div class="icon">
+                                    <i class="flaticon-business-trip"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>服务保障</h5>
+                                    <p><b class="highlight-number-d">7×24</b> 小时AI监控+人工团队1V1服务，算法更新48小时内适配，合同承诺效果未达预期即时赔付，历史履约率100%，客户续约率超<b class="highlight-number">90%</b>，ISO认证全流程标准化服务。</p>
+                                </div>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="/assets/picture/feature3.jpg" alt="扑扑鹰">
+                                <div class="hover-overlay">
+                                    <div class="hover-content">
+                                        <a href="/contact" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <!--=== Iconic Box ===-->
+                        <div class="sasly-card-item style-one mb-30" data-aos="fade-up" data-aos-duration="2000">
+                            <div class="content-box">
+                                <div class="icon">
+                                    <i class="flaticon-product-development"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>公司实力</h5>
+                                    <p>国家高新技术企业、专精特新企业，AAA级信用企业，ISO9001/ISO27001认证，全国员工600+，20余城市设有分支机构，是客户放心之选。<br />&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="/assets/picture/feature4.jpg" alt="扑扑鹰">
+                                <div class="hover-overlay">
+                                    <div class="hover-content">
+                                        <a href="/contact" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blogs-sb pt-130 pb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=== Section Title ===-->
+                    <div class="section-title text-center mb-120">
+                        <span class="sub-heading"><i class="far fa-arrow-right"></i>GEO资讯中心</span>
+                        <h2 class="text-anm"><span class="font-200">最新</span>GEO行业资讯</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-4 col-md-6">
+                    <!--=== Blog Post Item ===-->
+                    <div class="blog-post-item style-one mb-80" data-aos="fade-up" data-aos-duration="1200">
+                        <div class="post-thumbnail">
+                            <img src="/assets/picture/blog1.jpg" alt="扑扑鹰">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta style-one">
+                                <span class="category"><a href="#">Business</a></span>
+                                <span class="date"><a href="#">September 20, 2024</a></span>
+                            </div>
+                            <h4 class="title"><a href="#">Unlocking the Power of Digital
+                                Transform for Business</a></h4>
+                            <p>The team at truly understands our industry. tailored approach helped streamline</p>
+                            <a href="#" class="read-more style-one"><i class="far fa-plus"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <!--=== Blog Post Item ===-->
+                    <div class="blog-post-item style-one mb-80" data-aos="fade-up" data-aos-duration="1400">
+                        <div class="post-thumbnail">
+                            <img src="/assets/picture/blog2.jpg" alt="扑扑鹰">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta style-one">
+                                <span class="category"><a href="#">Consulting</a></span>
+                                <span class="date"><a href="#">September 20, 2024</a></span>
+                            </div>
+                            <h4 class="title"><a href="#">How to Leverage Data-Driven Decisions for Business Growth</a></h4>
+                            <p>The team at truly understands our industry. tailored approach helped streamline</p>
+                            <a href="#" class="read-more style-one"><i class="far fa-plus"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <!--=== Blog Post Item ===-->
+                    <div class="blog-post-item style-one mb-80" data-aos="fade-up" data-aos-duration="1600">
+                        <div class="post-thumbnail">
+                            <img src="/assets/picture/blog3.jpg" alt="扑扑鹰">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta style-one">
+                                <span class="category"><a href="#">Business</a></span>
+                                <span class="date"><a href="#">September 20, 2024</a></span>
+                            </div>
+                            <h4 class="title"><a href="#">Navigating Economic Tips for Resilient Business Planning</a></h4>
+                            <p>The team at truly understands our industry. tailored approach helped streamline</p>
+                            <a href="#" class="read-more style-one"><i class="far fa-plus"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection />
+    <script>import '../scripts/pages/home.js';</script>
 </BaseLayout>
