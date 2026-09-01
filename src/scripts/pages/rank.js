@@ -1,21 +1,11 @@
 /**
  * GEO 排名查询页页面脚本
  * @module pages/rank
- * @用途 处理 #rank-form 表单提交：校验关键词非空 → 按关键词+平台过滤硬编码 mock 数据 → 渲染结果表格 → 显示结果区
+ * @用途 处理 #rank-form 表单提交：校验关键词非空 → fetch /api/rank → 渲染结果表格 → 显示结果区
  * @依赖 无（纯原生 DOM，不依赖 jQuery）
- * @来源 mock 数据硬编码自 src/data/rank-mock.json（v0.7.0 演示数据，后端 /api/rank 未接通）
+ * @来源 v1.1.0 改为 fetch /api/rank 端点（替代 v0.7.0 硬编码 mock）
  * @导出 无（自动执行，由 rank.astro 通过 import 引入）
  */
-
-//===== 演示数据（硬编码，与 src/data/rank-mock.json 同步）=====
-const MOCK_RESULTS = [
-  { keyword: 'GEO优化', platform: '豆包', rank: 1, url: 'example.com', change: '+3' },
-  { keyword: 'AI SEO', platform: 'DeepSeek', rank: 2, url: 'example.com', change: '+1' },
-  { keyword: '品牌优化', platform: '文心一言', rank: 3, url: 'example.com', change: '+5' },
-  { keyword: 'GEO优化', platform: '通义千问', rank: 1, url: 'example.com', change: '+2' },
-  { keyword: 'AI搜索', platform: 'Kimi', rank: 4, url: 'example.com', change: '-1' },
-  { keyword: '品牌优化', platform: '豆包', rank: 2, url: 'example.com', change: '+1' }
-];
 
 function escapeHtml(str) {
   return String(str)
@@ -31,15 +21,6 @@ function changeClass(change) {
   if (change.indexOf('+') === 0) return 'rank-change-up';
   if (change.indexOf('-') === 0) return 'rank-change-down';
   return 'rank-change-neutral';
-}
-
-function filterResults(keyword, platform) {
-  const kw = keyword.trim().toLowerCase();
-  return MOCK_RESULTS.filter((item) => {
-    const kwMatch = !kw || String(item.keyword).toLowerCase().indexOf(kw) !== -1;
-    const platMatch = platform === '全部' || item.platform === platform;
-    return kwMatch && platMatch;
-  });
 }
 
 function renderRows(rows) {
@@ -67,11 +48,7 @@ function renderRows(rows) {
 function showTip(show) {
   const tip = document.getElementById('rank-form-tip');
   if (!tip) return;
-  if (show) {
-    tip.hidden = false;
-  } else {
-    tip.hidden = true;
-  }
+  tip.hidden = !show;
 }
 
 function showResults(show) {
@@ -80,7 +57,20 @@ function showResults(show) {
   wrapper.hidden = !show;
 }
 
-function handleSubmit(event) {
+function setSubmitLoading(loading) {
+  const btn = document.querySelector('#rank-form button[type="submit"]');
+  if (!btn) return;
+  if (loading) {
+    btn.disabled = true;
+    btn.dataset.originalText = btn.innerHTML;
+    btn.innerHTML = '查询中... <i class="far fa-spinner fa-spin"></i>';
+  } else {
+    btn.disabled = false;
+    if (btn.dataset.originalText) btn.innerHTML = btn.dataset.originalText;
+  }
+}
+
+async function handleSubmit(event) {
   event.preventDefault();
   const keywordEl = document.getElementById('rank-keyword');
   const platformEl = document.getElementById('rank-platform');
@@ -96,14 +86,31 @@ function handleSubmit(event) {
   showTip(false);
 
   const platform = platformEl.value || '全部';
-  const rows = filterResults(keyword, platform);
-  renderRows(rows);
-  showResults(true);
 
-  // 滚动到结果区
-  const wrapper = document.getElementById('rank-result-wrapper');
-  if (wrapper && !wrapper.hidden && wrapper.scrollIntoView) {
-    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // v1.1.0: fetch /api/rank 端点
+  setSubmitLoading(true);
+  try {
+    const params = new URLSearchParams({ keyword: keyword.trim(), platform });
+    const res = await fetch('/api/rank?' + params.toString());
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || '查询失败（HTTP ' + res.status + '）');
+    }
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.message || '查询失败');
+    renderRows(data.results || []);
+    showResults(true);
+
+    const wrapper = document.getElementById('rank-result-wrapper');
+    if (wrapper && !wrapper.hidden && wrapper.scrollIntoView) {
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } catch (e) {
+    const body = document.getElementById('rank-result-body');
+    if (body) body.innerHTML = '<tr><td colspan="5" class="text-center text-danger">查询失败：' + escapeHtml(e.message || '未知错误') + '</td></tr>';
+    showResults(true);
+  } finally {
+    setSubmitLoading(false);
   }
 }
 

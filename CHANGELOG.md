@@ -6,6 +6,51 @@
 
 ---
 
+## [v1.1.0] - 2026-09-02
+
+### 阶段：后端 API 接通（第 4 章）
+
+### Added
+- **@astrojs/node 适配器**：astro.config.mjs 集成 standalone 模式，启用服务端渲染能力
+- **src/pages/api/rank.ts**：GET /api/rank 端点
+  - 接收 keyword + platform 查询参数，返回品牌在 AI 搜索平台的排名表现
+  - 参数校验（keyword 必填，platform=全部 时不限平台）
+  - 当前读取 src/data/rank-mock.json 演示数据
+- **src/pages/api/contact.ts**：POST /api/contact 端点
+  - 接收联系表单 JSON（name/email/brand/phone/message）
+  - 字段校验（name/brand/email/phone 必填 + 邮箱格式校验）
+  - 当前仅返回成功响应，未发送真实邮件（TODO: 接入邮件服务）
+
+### Changed
+- **src/scripts/pages/rank.js**：v0.7.0 硬编码 mock → v1.1.0 fetch /api/rank
+  - 新增 loading 状态（查询中... + spinner）
+  - 新增 try/catch 错误处理 + 表格内显示失败信息
+  - 使用 URLSearchParams 构造查询字符串
+- **src/scripts/pages/contact.js**：v0.8.0 mock 成功 → v1.1.0 fetch /api/contact
+  - 新增 loading 状态（提交中... + spinner）
+  - fetch POST + JSON payload，.then 链式处理成功/失败
+  - 网络异常兜底提示
+- **src/pages/rank.astro**：更新注释反映 v1.1.0 状态，移除 TODO 标记
+- **astro.config.mjs**：添加 node adapter，移除已废弃的 output:'hybrid'（Astro 5+ 默认 static + 按需 SSR）
+- **package.json**：1.0.1 → 1.1.0，新增 @astrojs/node 依赖
+
+### Build & Test
+- npm run build 通过，23 个静态页面 + 服务端 entrypoints 构建
+- API 端点实测（preview 服务器）：
+  - GET /api/rank?keyword=GEO优化&platform=全部 → 200, count=2 ✓
+  - GET /api/rank?platform=豆包（缺 keyword） → 400, "缺少必填参数 keyword" ✓
+  - GET /api/rank?keyword=AI SEO&platform=DeepSeek → 200, count=1 ✓
+  - POST /api/contact（合法 JSON） → 200, "提交成功" ✓
+  - POST /api/contact（缺 brand/phone） → 400, "缺少必填字段：brand, phone" ✓
+  - POST /api/contact（邮箱格式错） → 400, "邮箱格式不正确" ✓
+  - POST /api/contact（非合法 JSON） → 400, "请求体不是合法 JSON" ✓
+
+### 部署说明
+- node adapter standalone 模式构建产物在 dist/server/，可转 serverless 部署
+- 邮件发送功能待接入（Resend/SendGrid/SMTP），当前 /api/contact 仅校验不入库不发信
+
+---
+
 ## [v1.0.1] - 2026-09-02
 
 ### 阶段：已知遗留修复

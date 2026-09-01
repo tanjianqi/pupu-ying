@@ -1,6 +1,6 @@
 {
   "name": "pupu-ying",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "description": "扑扑鹰 GEO+SEO 优化服务商官网 (Astro)",
   "scripts": {
@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^11.1.5",
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.2.10"
   },

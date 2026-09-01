@@ -1,8 +1,8 @@
 ---
 // 页面: GEO 排名查询（rank）
 // 职责: 提供关键词 + 平台查询表单，展示在主流 AI 搜索平台的排名表现
-// 依赖: BaseLayout, /scripts/pages/rank.js, /src/data/rank-mock.json（mock 数据源）
-// 状态: v0.7.0 演示版，结果来自硬编码 mock，后端 /api/rank 未接通
+// 依赖: BaseLayout, /scripts/pages/rank.js（fetch /api/rank 端点）
+// 状态: v1.1.0 接通 /api/rank 端点（hybrid 模式服务端渲染，数据源为 rank-mock.json）
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout activeNav="rank" title="GEO排名查询 - 扑扑鹰" description="GEO排名查询工具 - 输入关键词，查询品牌在主流AI搜索平台（豆包/DeepSeek/文心一言/通义千问/Kimi）的排名表现。" bodyClass="business-home">
@@ -39,7 +39,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <div class="contact-wrapper mb-50" data-aos="fade-up" data-aos-duration="1400">
                         <h3>排名查询</h3>
                         <p>输入关键词，选择目标 AI 平台，查看排名表现 *</p>
-                        <!-- TODO(后端): 接通 /api/rank 接口后，删除 mock 引用与 demo-note -->
                         <form id="rank-form" class="contact-form rank-form" novalidate>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -82,7 +81,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <span class="sub-heading"><i class="far fa-arrow-right"></i>查询结果</span>
                             <h3 class="text-anm">排名表现一览</h3>
                         </div>
-                        <p class="demo-note"><small>* 演示数据，后端接口未接通</small></p>
+                        <p class="demo-note"><small>* 当前为演示数据源，正式数据接入后自动生效</small></p>
                         <div class="table-responsive">
                             <table class="table table-bordered rank-table">
                                 <thead>
