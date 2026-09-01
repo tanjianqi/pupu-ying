@@ -1,0 +1,28 @@
+---
+// 组件: Nav
+// 职责: 主菜单渲染，支持二级下拉，当前项高亮
+// 依赖: src/data/nav.json
+// Props: activeNav (string) - 当前高亮菜单 key
+import nav from '../data/nav.json';
+const { activeNav = '' } = Astro.props;
+---
+<nav class="main-menu">
+  <ul>
+    {nav.map((item) => (
+      <li class={`menu-item has-children${item.key === activeNav ? ' current-menu-item' : ''}`}>
+        {item.href ? (
+          <a href={item.href} aria-current={item.key === activeNav ? 'page' : undefined}>{item.label}</a>
+        ) : (
+          <a href="#">{item.label}</a>
+        )}
+        {item.children && (
+          <ul class="sub-menu">
+            {item.children.map((child) => (
+              <li><a href={child.href} aria-current={child.key === activeNav ? 'page' : undefined}>{child.label}</a></li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>

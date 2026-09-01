@@ -1,18 +1,20 @@
 ---
 // 组件: BaseLayout
-// 职责: 页面骨架 <html><head><body>，装载全局 CSS/JS、Header、Footer
-// 依赖: （v0.2.0 暂无，v0.3.0 起引入 Header/Footer）
-// Props:
-//   title (string)       - <title> 文本
-//   description (string) - meta description
-//   activeNav (string)   - 当前高亮菜单 key（v0.3.0 起）
-//   bodyClass (string)   - <body> class
-//   pageStyle (string)   - 页面局部 CSS 路径（v0.4.0 起）
-//   pageScript (string)  - 页面局部 JS 路径（v0.4.0 起）
+// 职责: 页面骨架，装载全局 CSS/JS + Preloader + Header + Footer
+// 依赖: Preloader, Header, Footer, /vendor/css, /vendor/js, main.js
+// Props: title/description/activeNav/bodyClass/pageStyle/pageScript
+import Preloader from '../components/Preloader.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/theme.css';
 const {
   title = '扑扑鹰 GEO+SEO优化 - 全域AI搜索获客系统',
   description = '扑扑鹰 - 专业GEO+SEO搜索引擎优化服务，助品牌抢占AI搜索时代增量流量。',
+  activeNav = '',
   bodyClass = 'business-home',
+  pageStyle,
+  pageScript,
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -24,8 +26,47 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{title}</title>
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <!-- vendor CSS（保留原加载顺序） -->
+    <link rel="stylesheet" href="/vendor/css/css2.css" />
+    <link rel="stylesheet" href="/vendor/css/flaticon_sasly.css" />
+    <link rel="stylesheet" href="/vendor/css/all.min.css" />
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/vendor/css/slick.css" />
+    <link rel="stylesheet" href="/vendor/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/vendor/css/aos.css" />
+    {pageStyle && <link rel="stylesheet" href={pageStyle} />}
   </head>
   <body class={bodyClass}>
-    <slot />
+    <Preloader />
+    <Header activeNav={activeNav} />
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <div class="line_wrap">
+          <div class="line_item_one"></div>
+          <div class="line_item"></div>
+          <div class="line_item"></div>
+          <div class="line_item"></div>
+          <div class="line_item"></div>
+        </div>
+        <main><slot /></main>
+        <Footer />
+      </div>
+    </div>
+    <!-- vendor JS（保留原顺序，jQuery 先就绪） -->
+    <script src="/vendor/js/jquery-3.7.1.min.js" is:inline></script>
+    <script src="/vendor/js/popper.min.js" is:inline></script>
+    <script src="/vendor/js/bootstrap.min.js" is:inline></script>
+    <script src="/vendor/js/gsap.min.js" is:inline></script>
+    <script src="/vendor/js/SplitText.min.js" is:inline></script>
+    <script src="/vendor/js/ScrollSmoother.min.js" is:inline></script>
+    <script src="/vendor/js/ScrollTrigger.min.js" is:inline></script>
+    <script src="/vendor/js/slick.min.js" is:inline></script>
+    <script src="/vendor/js/jquery.magnific-popup.min.js" is:inline></script>
+    <script src="/vendor/js/aos.js" is:inline></script>
+    <!-- 全站初始化（Astro 处理为模块，vendor 全局已就绪） -->
+    <script>
+      import '../scripts/main.js';
+    </script>
+    {pageScript && <script src={pageScript} is:inline></script>}
   </body>
 </html>

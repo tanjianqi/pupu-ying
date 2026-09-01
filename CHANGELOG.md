@@ -6,6 +6,31 @@
 
 ---
 
+## [v0.3.0] - 2026-09-01
+
+### 阶段：布局组件
+
+### Added
+- src/data/nav.json（含补回的「服务案例」「GEO排名查询」菜单入口）
+- src/data/site.json（公司信息/联系方式/topLinks）
+- src/components/Preloader.astro
+- src/components/Nav.astro（消费 nav.json，支持二级下拉 + 当前项高亮）
+- src/components/Header.astro（顶部联系条 + 主菜单 + CTA + 移动端 toggler）
+- src/components/Footer.astro（公司信息/联系方式/订阅/版权）
+- src/styles/global.css（reset + 基础）
+- src/styles/theme.css（占位，v0.4.0 填充）
+- src/scripts/main.js（从 common_script.js 迁移全站初始化：菜单/preloader/offcanvas/magnific/gsap/aos）
+
+### Changed
+- BaseLayout.astro 改造：装载 vendor CSS/JS + Preloader + Header + Footer + main.js
+- vendor script 标签加 is:inline（Astro 要求引用 public/ 资源需此指令）
+- 首页临时改为头尾验证页
+
+### Fixed
+- vendor JS 引用 public/ 报错 → 全部加 is:inline 修复
+
+---
+
 ## [v0.2.0] - 2026-09-01
 
 ### 阶段：Astro 脚手架

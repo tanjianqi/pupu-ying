@@ -1,0 +1,58 @@
+---
+// 组件: Header
+// 职责: 顶部联系条 + 主菜单 + 移动端 toggler + CTA 按钮
+// 依赖: src/data/site.json, src/components/Nav.astro
+// Props: activeNav (string)
+import site from '../data/site.json';
+import Nav from './Nav.astro';
+const { activeNav = '' } = Astro.props;
+---
+<header class="header-area header-one">
+  <div class="header-top">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="top-left">
+            <span><span>{site.name}</span>，{site.tagline}</span>
+            <span><i class="fas fa-envelope"></i><a href={`mailto:${site.email}`}>{site.email}</a></span>
+            <span><i class="fas fa-phone"></i>售前咨询：<a href={`tel:${site.phone}`}>{site.phone}</a></span>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="top-right">
+            <ul class="top-nav-link">
+              {site.topLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-navigation">
+    <div class="nav-inner-menu">
+      <div class="primary-menu">
+        <div class="site-branding">
+          <a href="/" class="brand-logo"><img src="/assets/picture/logo-main.png" alt="扑扑鹰" /></a>
+        </div>
+        <div class="sasly-nav-menu">
+          <div class="sasly-menu-top d-flex justify-content-between d-block d-lg-none">
+            <div class="site-branding">
+              <a href="/" class="brand-logo"><img src="/assets/picture/logo-main.png" alt="扑扑鹰" /></a>
+            </div>
+            <div class="navbar-close"><i class="far fa-times"></i></div>
+          </div>
+          <Nav activeNav={activeNav} />
+          <div class="sasly-nav-button mt-20 d-block d-md-none">
+            <a href="/contact" class="theme-btn style-one">免费获取优化方案<i class="far fa-angle-double-right"></i></a>
+          </div>
+        </div>
+        <div class="nav-right-item">
+          <div class="nav-button d-none d-md-block">
+            <a href="/contact" class="theme-btn style-one">免费获取优化方案<i class="far fa-angle-double-right"></i></a>
+          </div>
+          <div class="navbar-toggler"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,14 @@
+{
+  "name": "扑扑鹰",
+  "tagline": "专业领先的GEO(AI SEO)优化服务商",
+  "email": "geo@ppypaper.com",
+  "phone": "13397166330",
+  "address": "湖北省武汉市东湖新技术开发区关南园一路20号当代科技园（华夏创业中心）7号楼702室",
+  "company": "湖北扑扑鹰科技有限公司",
+  "topLinks": [
+    { "label": "关于我们", "href": "/about" },
+    { "label": "常见问题", "href": "/faqs" },
+    { "label": "服务支持", "href": "/geoservice" },
+    { "label": "团队介绍", "href": "/team" }
+  ]
+}

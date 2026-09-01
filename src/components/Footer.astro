@@ -1,0 +1,89 @@
+---
+// 组件: Footer
+// 职责: 页脚 - 公司信息/联系方式/订阅/版权
+// 依赖: src/data/site.json
+import site from '../data/site.json';
+---
+<footer class="business-footer pt-100 primary-black-bg">
+  <div class="footer-widget-area pb-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 order-lg-1">
+          <div class="footer-widget footer-about-widget mb-40" data-aos="fade-up" data-aos-duration="1200">
+            <div class="footer-content">
+              <div class="footer-logo">
+                <a href="/"><img src="/assets/picture/logo-white.png" alt="扑扑鹰" /></a>
+              </div>
+              <p>扑扑鹰科技，深入了解每个品牌的独特需求与目标，提供针对性的GEO优化建议，助力品牌在AI搜索时代实现真实可见的增长。</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-sm-12 order-lg-2 order-sm-3">
+          <div class="footer-widget footer-nav-widget mb-40" data-aos="fade-up" data-aos-duration="1500">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="footer-content mb-35">
+                  <h4 class="widget-title">服务项目</h4>
+                  <ul class="footer-nav">
+                    <li><a href="#">GEO策略咨询</a></li>
+                    <li><a href="#">品牌内容优化</a></li>
+                    <li><a href="#">AI搜索优化</a></li>
+                    <li><a href="#">舆情监测管理</a></li>
+                    <li><a href="#">效果数据分析</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="footer-content mb-25">
+                  <h4 class="widget-title">联系我们</h4>
+                  <p>{site.address}</p>
+                </div>
+                <div class="footer-content">
+                  <h4 class="widget-title">商务合作</h4>
+                  <p><i class="fas fa-envelope"></i>&nbsp;&nbsp;<a href={`mailto:${site.email}`}>{site.email}</a></p>
+                  <p><i class="fas fa-phone"></i>&nbsp;&nbsp;<a href={`tel:${site.phone}`}>{site.phone}</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 order-lg-3 order-sm-2">
+          <div class="footer-widget footer-newsletter-widget mb-40" data-aos="fade-up" data-aos-duration="1800">
+            <div class="footer-content">
+              <h4 class="widget-title">订阅资讯</h4>
+              <p>订阅我们的GEO行业资讯，第一时间掌握AI搜索优化动态</p>
+              <form>
+                <div class="form-group">
+                  <input type="email" class="form_control" placeholder="邮件地址" name="email" required />
+                  <label><i class="far fa-envelope"></i></label>
+                  <button class="theme-btn style-one">立即订阅 <i class="far fa-angle-double-right"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="copyright-text">
+            <p>Copyright © 2026 {site.company}. All rights reserved.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="copyright-nav">
+            <ul>
+              <li><a href="/">扑扑鹰GEO</a></li>
+              <li><a href="/about">关于我们</a></li>
+              <li><a href="#">隐私政策</a></li>
+              <li><a href="/contact">联系我们</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

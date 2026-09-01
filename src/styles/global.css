@@ -1,0 +1,9 @@
+/* === 扑扑鹰 global.css ===
+   职责: reset + 全站通用变量/字体
+   依赖: 无
+   注: 框架样式由 vendor 提供，本文件仅放站点专属全局 */
+
+/* === Reset / 基础 === */
+body { margin: 0; }
+img { max-width: 100%; height: auto; }
+a { text-decoration: none; }

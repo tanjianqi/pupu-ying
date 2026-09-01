@@ -1,0 +1,11 @@
+[
+  { "label": "扑扑鹰首页", "href": "/", "key": "home" },
+  { "label": "GEO优化(AI SEO)", "href": null, "key": "geo", "children": [
+    { "label": "GEO优化介绍", "href": "/geo", "key": "geo-intro" },
+    { "label": "GEO服务支持", "href": "/geoservice", "key": "geoservice" }
+  ]},
+  { "label": "服务案例", "href": "/cases", "key": "cases" },
+  { "label": "GEO排名查询", "href": "/rank", "key": "rank" },
+  { "label": "关于扑扑鹰", "href": "/about", "key": "about" },
+  { "label": "GEO干货资讯", "href": "/news", "key": "news" }
+]

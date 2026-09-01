@@ -88,11 +88,11 @@
 
 | 状态 | 组件 | 版本 |
 |---|---|---|
-| [ ] | BaseLayout.astro | v0.2.0 |
-| [ ] | Preloader.astro | v0.3.0 |
-| [ ] | Header.astro | v0.3.0 |
-| [ ] | Nav.astro | v0.3.0 |
-| [ ] | Footer.astro | v0.3.0 |
+| [x] | BaseLayout.astro | v0.2.0/v0.3.0 |
+| [x] | Preloader.astro | v0.3.0 |
+| [x] | Header.astro | v0.3.0 |
+| [x] | Nav.astro | v0.3.0 |
+| [x] | Footer.astro | v0.3.0 |
 | [ ] | ServiceCard.astro | v0.5.0 |
 | [ ] | CaseCard.astro | v0.6.0 |
 | [ ] | CTASection.astro | v0.4.0 |
