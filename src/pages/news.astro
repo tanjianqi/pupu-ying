@@ -55,7 +55,7 @@ const categories = ['全部', ...Array.from(new Set(news.map((n) => n.category))
                                 </div>
                                 <div class="post-content">
                                     <div class="post-meta style-one">
-                                        <span class="category"><a href={`/news?cat=${encodeURIComponent(n.category)}`}>{n.category}</a></span>
+                                        <span class="category"><a href="/news" data-cat={n.category}>{n.category}</a></span>
                                         <span class="date"><a href={`/news/${n.slug}`}>{n.date}</a></span>
                                     </div>
                                     <h4 class="title"><a href={`/news/${n.slug}`}>{n.title}</a></h4>

@@ -6,6 +6,35 @@
 
 ---
 
+## [v0.9.0] - 2026-09-02
+
+### 阶段：收尾校验
+
+### Deleted
+- static/css/style1.css, style2.css, style3.css, style4.css, style5.css, default.css（确认无引用，style4/5 已有 public/vendor/css 副本）
+- static/js/theme1.js, theme2.js, theme3.js, theme4.js, theme5.js（已合并到 src/scripts/）
+
+### Moved
+- 原 14 个 HTML（index/contact/404/news/news-art/team/about/faqs/geoservice/geo/素材/案例详情/案例列表/服务）→ legacy/
+- 原 static/ → legacy/static/（第三方框架资源原文件，对照保留）
+- 原 assets/ → legacy/assets/（原站共用图片/字体）
+
+### Fixed
+- favicon 404：原站无 favicon 文件，创建 SVG favicon（public/assets/images/favicon.svg），BaseLayout 改用 image/svg+xml
+- /news?cat=xxx 死链：news.astro 分类链接改为 /news + data-cat 属性，客户端过滤
+- /services 死链：geo.astro / geoservice.astro 中 2 处误链修正为 /contact
+
+### Added
+- docs/qa-report.md（linkinator 死链检查报告，129 links 0 broken）
+- public/assets/images/favicon.svg（SVG favicon，深色背景 + 绿色 P 字母）
+- linkinator devDependency
+
+### Build
+- npm run build 通过，23 页面静态生成
+- linkinator 死链检查：129 links scanned, 0 broken
+
+---
+
 ## [v0.8.0] - 2026-09-02
 
 ### 阶段：其余页面迁移（about / team / contact / faqs / news / materials / 404）
