@@ -1,0 +1,11 @@
+{
+  "note": "演示数据，后端接口未接通",
+  "results": [
+    { "keyword": "GEO优化", "platform": "豆包", "rank": 1, "url": "example.com", "change": "+3" },
+    { "keyword": "AI SEO", "platform": "DeepSeek", "rank": 2, "url": "example.com", "change": "+1" },
+    { "keyword": "品牌优化", "platform": "文心一言", "rank": 3, "url": "example.com", "change": "+5" },
+    { "keyword": "GEO优化", "platform": "通义千问", "rank": 1, "url": "example.com", "change": "+2" },
+    { "keyword": "AI搜索", "platform": "Kimi", "rank": 4, "url": "example.com", "change": "-1" },
+    { "keyword": "品牌优化", "platform": "豆包", "rank": 2, "url": "example.com", "change": "+1" }
+  ]
+}

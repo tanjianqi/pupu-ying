@@ -1,0 +1,90 @@
+---
+// 页面: GEO 干货资讯（news 列表）
+// 职责: hero横幅 + 资讯卡片墙（从 news.json 渲染）+ 分类过滤 + 分页占位 + CTA
+// 依赖: BaseLayout, CTASection, src/data/news.json, src/scripts/pages/news.js
+// 来源: 从原 news.html 迁移 main 内容，卡片改为 JSON 数据驱动
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import news from '../data/news.json';
+
+// 从 news.json 抽取去重分类
+const categories = ['全部', ...Array.from(new Set(news.map((n) => n.category)))];
+---
+<BaseLayout activeNav="news" title="GEO干货资讯 - 扑扑鹰" bodyClass="business-home">
+
+    <section class="page-hero-ss">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-content text-center">
+                        <h1 class="page-title">GEO干货资讯</h1>
+                        <ul class="breadcrumb-link">
+                            <li><a href="/">扑扑鹰GEO</a></li>
+                            <li class="active">GEO干货资讯</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-grid-page-ss pb-130">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title style-one text-center mb-40">
+                        <span class="sub-heading"><i class="far fa-arrow-right"></i>GEO干货资讯</span>
+                        <h2 class="text-anm"><span class="font-200">AI搜索时代</span> 的品牌获客方法论</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="news-filter-bar text-center mb-50" data-aos="fade-up" data-aos-duration="1000">
+                {categories.map((c, idx) => (
+                    <button type="button" class={`news-filter-btn${idx === 0 ? ' active' : ''}`} data-filter={c}>
+                        {c}
+                    </button>
+                ))}
+            </div>
+            <div class="news-list-wrapper">
+                <div class="row" id="news-list">
+                    {news.map((n) => (
+                        <div class="col-xl-4 col-md-6 col-sm-12">
+                            <div class="blog-post-item style-three mb-30" data-category={n.category} data-aos="fade-up" data-aos-duration="1200">
+                                <div class="post-thumbnail">
+                                    <a href={`/news/${n.slug}`}><img src={n.cover} alt={n.title} /></a>
+                                </div>
+                                <div class="post-content">
+                                    <div class="post-meta style-one">
+                                        <span class="category"><a href={`/news?cat=${encodeURIComponent(n.category)}`}>{n.category}</a></span>
+                                        <span class="date"><a href={`/news/${n.slug}`}>{n.date}</a></span>
+                                    </div>
+                                    <h4 class="title"><a href={`/news/${n.slug}`}>{n.title}</a></h4>
+                                    <p>{n.summary}</p>
+                                    <a href={`/news/${n.slug}`} class="read-more style-one"><span><i class="far fa-plus"></i>阅读全文</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div class="news-empty-placeholder text-center" style="display:none; padding: 60px 0;">
+                    <p>暂无该分类的资讯，敬请期待。</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="sasly-pagination text-center mt-30">
+                        <ul>
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class="far fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection />
+    <script>import '../scripts/pages/news.js';</script>
+</BaseLayout>

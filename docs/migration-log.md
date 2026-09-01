@@ -10,19 +10,19 @@
 | 状态 | 原文件 | 目标路由 | 版本 |
 |---|---|---|---|
 | [x] | index.html | src/pages/index.astro | v0.4.0 |
-| [ ] | about.html | src/pages/about.astro | v0.8.0 |
+| [x] | about.html | src/pages/about.astro | v0.8.0 |
 | [x] | geo.html | src/pages/geo.astro | v0.5.0 |
 | [x] | geoservice.html + 服务.html | src/pages/geoservice.astro | v0.5.0 |
 | [x] | 案例列表.html | src/pages/cases/index.astro（补回） | v0.6.0 |
 | [x] | 案例详情.html | src/pages/cases/[slug].astro（补回） | v0.6.0 |
-| [ ] | —（注释中） | src/pages/rank.astro（补回） | v0.7.0 |
-| [ ] | news.html | src/pages/news.astro | v0.8.0 |
-| [ ] | news-art.html | src/pages/news/[slug].astro | v0.8.0 |
-| [ ] | team.html | src/pages/team.astro | v0.8.0 |
-| [ ] | contact.html | src/pages/contact.astro | v0.8.0 |
-| [ ] | faqs.html | src/pages/faqs.astro | v0.8.0 |
-| [ ] | 素材.html | src/pages/materials.astro | v0.8.0 |
-| [ ] | 404.html | src/pages/404.astro | v0.8.0 |
+| [x] | —（注释中） | src/pages/rank.astro（补回） | v0.7.0 |
+| [x] | news.html | src/pages/news.astro | v0.8.0 |
+| [x] | news-art.html | src/pages/news/[slug].astro | v0.8.0 |
+| [x] | team.html | src/pages/team.astro | v0.8.0 |
+| [x] | contact.html | src/pages/contact.astro | v0.8.0 |
+| [x] | faqs.html | src/pages/faqs.astro | v0.8.0 |
+| [x] | 素材.html | src/pages/materials.astro | v0.8.0 |
+| [x] | 404.html | src/pages/404.astro | v0.8.0 |
 
 ---
 
@@ -80,7 +80,7 @@
 | [ ] | theme3.js | 验证无引用→删除 | 删除 |
 | [x] | theme4.js | 拆解到 pages/geo.js + geoservice.js | src/scripts/pages/ |
 | [x] | theme5.js | 拆解到 pages/home.js | src/scripts/pages/home.js |
-| [ ] | ajax-contact.js | 迁移 | src/scripts/pages/contact.js |
+| [x] | ajax-contact.js | 迁移 | src/scripts/pages/contact.js |
 
 ---
 

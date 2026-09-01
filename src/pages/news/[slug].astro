@@ -1,0 +1,145 @@
+---
+// 页面: news/[slug]
+// 职责: 资讯详情动态路由 —— getStaticPaths 从 news.json 生成所有资讯详情页；渲染封面/标题/正文/侧边栏
+// 依赖: BaseLayout, CTASection, src/data/news.json
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import news from '../../data/news.json';
+
+export function getStaticPaths() {
+  if (!Array.isArray(news) || news.length === 0) {
+    return [];
+  }
+  return news.map((n) => ({
+    params: { slug: n.slug },
+    props: { post: n, allNews: news },
+  }));
+}
+
+const { post, allNews } = Astro.props;
+
+// 侧边栏：取最近 3 篇非当前文章
+const recent = allNews.filter((n) => n.slug !== post.slug).slice(0, 3);
+// 当前文章在 allNews 中的位置，用于上一篇/下一篇
+const idx = allNews.findIndex((n) => n.slug === post.slug);
+const prev = idx > 0 ? allNews[idx - 1] : null;
+const next = idx < allNews.length - 1 ? allNews[idx + 1] : null;
+// 标签（从分类生成）
+const tags = ['Business', 'Consulting', 'Ai SEO', post.category];
+---
+<BaseLayout activeNav="news" title={`${post.title} - 扑扑鹰`} bodyClass="business-home">
+    <section class="page-hero-ss">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-content text-center">
+                        <h3 class="page-title">{post.title}</h3>
+                        <ul class="breadcrumb-link">
+                            <li><a href="/">扑扑鹰GEO</a></li>
+                            <li><a href="/news">GEO干货资讯</a></li>
+                            <li>{post.date}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-details-ss pb-130">
+        <div class="container">
+            <div class="blog-details-wrapper">
+                <div class="row">
+                    <div class="col-xl-8">
+                        <div class="blog-post-main mb-70">
+                            <div class="blog-post-item">
+                                <div class="post-thumbnail mb-40">
+                                    <img src={post.cover} alt={post.title}>
+                                </div>
+                                <div class="post-content" data-aos="fade-up" data-aos-duration="800">
+                                    <h3>{post.title}</h3>
+                                    <p><b>摘要：</b>{post.summary}</p>
+                                    {post.content.map((block) => (
+                                        block.type === 'img' ? (
+                                            <div class="thumbnail mb-30">
+                                                <img src={block.src} alt={post.title} />
+                                            </div>
+                                        ) : (
+                                            <p set:html={block.text}></p>
+                                        )
+                                    ))}
+                                </div>
+                                <div class="entry-footer">
+                                    <div class="tag-links">
+                                        <span>标签:</span>
+                                        {tags.map((t) => <a href="#">{t}</a>)}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="post-navigation mb-80" data-aos="fade-up" data-aos-duration="1200">
+                                {prev ? (
+                                    <div class="post-nav-item prev-post">
+                                        <div class="thumb">
+                                            <img src={prev.cover} alt={prev.title}>
+                                        </div>
+                                        <div class="content">
+                                            <a href={`/news/${prev.slug}`} class="post-date">{prev.date}</a>
+                                            <h6><a href={`/news/${prev.slug}`}>{prev.title}</a></h6>
+                                        </div>
+                                    </div>
+                                ) : <div class="post-nav-item prev-post"></div>}
+                                {next ? (
+                                    <div class="post-nav-item next-post item-rtl">
+                                        <div class="thumb">
+                                            <img src={next.cover} alt={next.title}>
+                                        </div>
+                                        <div class="content">
+                                            <a href={`/news/${next.slug}`} class="post-date">{next.date}</a>
+                                            <h6><a href={`/news/${next.slug}`}>{next.title}</a></h6>
+                                        </div>
+                                    </div>
+                                ) : <div class="post-nav-item next-post item-rtl"></div>}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="sidebar-widget-area mb-20">
+                            <div class="sidebar-widget sidebar-post-widget mb-40" data-aos="fade-up" data-aos-duration="1000">
+                                <h4 class="widget-title">热门推荐</h4>
+                                <div class="widget-content">
+                                    <ul class="recent-post-list">
+                                        {recent.map((n) => (
+                                            <li class="post-thumbnail-content">
+                                                <img src={n.cover} alt={n.title}>
+                                                <div class="post-title-date">
+                                                    <span class="posted-on"><a href={`/news/${n.slug}`}>{n.date}</a></span>
+                                                    <h6><a href={`/news/${n.slug}`}>{n.title}</a></h6>
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget sidebar-tag-widget mb-30" data-aos="fade-up" data-aos-duration="1200">
+                                <h4 class="widget-title">Tags</h4>
+                                <div class="widget-content">
+                                    {tags.map((t) => <a href="#">{t}</a>)}
+                                </div>
+                            </div>
+                            <div class="sidebar-widget sidebar-banner-widget mb-30" data-aos="fade-up" data-aos-duration="1600">
+                                <img src="/assets/picture/widget-img1.png" alt="banner image">
+                                <div class="shape-img"><span><img src="/assets/picture/shape12.png" alt="shape img"></span></div>
+                                <div class="widget-content">
+                                    <h3 class="title">让你的品牌成为AI的答案</h3>
+                                    <a href="/contact" class="theme-btn style-one">免费获取优化方案</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection />
+</BaseLayout>

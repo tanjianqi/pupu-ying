@@ -6,6 +6,51 @@
 
 ---
 
+## [v0.8.0] - 2026-09-02
+
+### 阶段：其余页面迁移（about / team / contact / faqs / news / materials / 404）
+
+### Added
+- src/pages/about.astro（关于扑扑鹰，迁移自 about.html）
+- src/pages/team.astro（团队介绍，8 位成员数据驱动渲染）
+- src/pages/contact.astro（联系我们，含表单字段重命名 name/email/brand/phone/message）
+- src/scripts/pages/contact.js（原生 DOM 表单校验 + 邮箱格式 + mock 成功反馈）
+- src/pages/faqs.astro（常见问题，3 分类 tab + accordion，JS 数据驱动）
+- src/pages/news.astro（GEO 干货资讯列表，news.json 驱动 + 分类过滤）
+- src/scripts/pages/news.js（原生 DOM 分类过滤交互）
+- src/pages/news/[slug].astro（资讯详情动态路由，getStaticPaths 静态生成 6 篇）
+- src/pages/materials.astro（设计素材参考页，保留原 Fintech 模板全部 section）
+- src/pages/404.astro（404 错误页，保留原 error-page 文案与视觉）
+- public/vendor/css/style4.css（Fintech 专属样式，materials.astro 通过 pageStyle 载入）
+- public/vendor/css/style5.css（error-page 样式，404.astro 通过 pageStyle 载入）
+
+### Changed
+- migration-log: 7 个 v0.8.0 页面 + ajax-contact.js 打勾
+- package.json version: 0.2.0 → 0.8.0
+- 修复 about.astro 第 195 行 `<span class="font-200">` 未闭合标签
+- 修复 news.astro 第 89 行 import 路径多写一级 `../`（应为 `../scripts/pages/news.js`）
+- materials/404 页面 bodyClass 与 pageStyle 通过 BaseLayout Props 注入
+
+### Build
+- `npm run build` 通过，23 个页面静态生成（含 5 案例详情 + 6 资讯详情）
+- 已知遗留 WARN：theme.css 内非首页 selector 的相对 url() 引用（v0.9.0 处理）
+
+---
+
+## [v0.7.0] - 2026-09-01
+
+### 阶段：GEO 排名查询补回
+
+### Added
+- src/pages/rank.astro（GEO 排名查询页，关键词 + 平台表单）
+- src/scripts/pages/rank.js（表单校验 + mock 数据渲染查询结果表格）
+- src/data/rank-mock.json（演示用 mock 排名数据）
+
+### Notes
+- 前端 demo，结果来自硬编码 mock；后端 /api/rank 接口未接通，页面带 demo-note 标注
+
+---
+
 ## [v0.6.0] - 2026-09-01
 
 ### 阶段：案例库补回

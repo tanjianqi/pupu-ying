@@ -1,0 +1,29 @@
+---
+// 页面: 404 错误页
+// 职责: 用户访问不存在路径时的友好提示页，提供回到首页入口
+// 依赖: BaseLayout、/vendor/css/style5.css（error-page 专属样式，pageStyle 载入）
+// 状态: v0.8.0 迁移自 404.html，保留原 error-page section 与文案
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout activeNav="" title="页面未找到 - 扑扑鹰" bodyClass="business-home" pageStyle="/vendor/css/style5.css">
+
+    <!--======  Start Error Section  ======-->
+    <section class="error-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--===  Section Content Box  ===-->
+                    <div class="section-content-box text-center">
+                        <div class="error-image">
+                            <img src="/assets/picture/error.png" alt="404 Error">
+                        </div>
+                        <h1 data-aos="fade-down" data-aos-duration="1200">Sorry！页面丢失！</h1>
+                        <h5 data-aos="fade-up" data-aos-duration="1300">丢失页面已记录，正在随机挑选祭天程序员，请稍后耐心等待~~~</h5>
+                        <a href="/" class="theme-btn style-one" data-aos="fade-up" data-aos-duration="1400">回到首页<i class="far fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--======  End Error Section  ======-->
+
+</BaseLayout>

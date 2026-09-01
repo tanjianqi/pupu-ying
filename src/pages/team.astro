@@ -1,0 +1,108 @@
+---
+// 页面: 扑扑鹰团队（team）
+// 职责: 团队介绍 —— hero横幅 + 横幅大图 + 团队标题/简介 + 8 人团队成员卡 + 跑马灯 + CTA
+// 依赖: BaseLayout, CTASection
+// 来源: 从原 team.html 迁移 main 内容，路径/内链按规则替换
+// 注: 团队页不在主菜单高亮，activeNav 留空
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+<BaseLayout activeNav="" title="团队介绍 - 扑扑鹰" bodyClass="business-home">
+
+    <section class="page-hero-ss">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-content text-center">
+                        <h1 class="page-title">扑扑鹰团队</h1>
+                        <ul class="breadcrumb-link">
+                            <li><a href="/">扑扑鹰GEO</a></li>
+                            <li class="active">扑扑鹰团队</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-banner-ss pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sasly-image-box" data-aos="fade-up" data-aos-duration="1000">
+                        <img src="/assets/picture/team-single1.jpg" alt="Team Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-page-ss pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title mb-50" data-aos="fade-right" data-aos-duration="1000">
+                        <h2 class="text-anm"><span class="font-200">我们的团队</span> 助力商企抢占AI时代超级流量入口红利</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-content-box mb-50" data-aos="fade-left" data-aos-duration="1300">
+                        <div class="icon">
+                            <img src="/assets/picture/Union.png" alt="shape">
+                        </div>
+                        <p>搜索是商企经营和营销的必选项，将AI时代红利化为增长动力</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {[
+                    { img: 'team1.jpg', name: 'Mitchell B. Roberts', pos: 'Design Instructor' },
+                    { img: 'team2.jpg', name: 'Brian H. Brumback', pos: 'Tech Instructor' },
+                    { img: 'team3.jpg', name: 'Kenneth T. Reader', pos: 'Design Instructor' },
+                    { img: 'team4.jpg', name: 'Mario C. Anderson', pos: 'Art Instructor' },
+                    { img: 'team5.jpg', name: 'William M. Alvarez', pos: 'Web Designer' },
+                    { img: 'team6.jpg', name: 'John C. Chapman', pos: 'Business Specialist' },
+                    { img: 'team7.jpg', name: 'Arlen M. Stapleton', pos: 'Digital Marketer' },
+                    { img: 'team8.jpg', name: 'Leroy A. McDonald', pos: 'Senior manager' }
+                ].map((m, idx) => (
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="team-item style-one mb-35" data-aos="fade-up" data-aos-duration={`${1000 + idx * 100}`}>
+                            <div class="member-image">
+                                <img src={`/assets/picture/${m.img}`} alt="Instructor Image">
+                                <div class="hover-content">
+                                    <ul class="social-link">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4 class="title"><a href="#">{m.name}</a></h4>
+                                <span class="position">{m.pos}</span>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="animated-big-text pb-75">
+        <div class="headline-wrap style-two">
+            <span class="marquee-wrap">
+                <span class="marquee-inner left">
+                    <span class="marquee-item"><b>  扑扑鹰·专业领先的GEO优化服务商。</b></span>
+                    <span class="marquee-item"><b>让你的品牌，成为AI的答案</b></span>
+                </span>
+                <span class="marquee-inner left">
+                    <span class="marquee-item"><b>  扑扑鹰·专业领先的GEO优化服务商。</b></span>
+                    <span class="marquee-item"><b>让你的品牌，成为AI的答案</b></span>
+                </span>
+            </span>
+        </div>
+    </section>
+
+    <CTASection />
+</BaseLayout>

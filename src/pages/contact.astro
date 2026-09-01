@@ -1,0 +1,149 @@
+---
+// 页面: 联系扑扑鹰（contact）
+// 职责: 联系信息卡（地址/邮箱/电话） + 免费咨询表单 + 跑马灯 + CTA
+// 依赖: BaseLayout, /scripts/pages/contact.js
+// 来源: 从原 contact.html 迁移 main 内容，路径/内链按规则替换
+// 注: 联系页不在主菜单高亮，activeNav 留空
+// 修正: 原表单 name/email 字段重名 bug，改为 name/brand/email/phone/message 五个独立字段
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+<BaseLayout activeNav="" title="联系我们 - 扑扑鹰" bodyClass="business-home">
+
+    <section class="page-hero-ss">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-content text-center">
+                        <h1 class="page-title">联系扑扑鹰</h1>
+                        <ul class="breadcrumb-link">
+                            <li><a href="/">扑扑鹰GEO</a></li>
+                            <li class="active">联系扑扑鹰</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-ss pb-80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="sasly-iconic-box mb-30" data-aos="fade-up" data-aos-duration="1300">
+                        <div class="icon">
+                            <i class="flaticon-route"></i>
+                        </div>
+                        <div class="content">
+                            <h5>公司地址</h5>
+                            <p>湖北省武汉市东湖新技术开发区关南园一路20号当代科技园（华夏创业中心）7号楼702室</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="sasly-iconic-box mb-30" data-aos="fade-up" data-aos-duration="1600">
+                        <div class="icon">
+                            <i class="flaticon-mailbox"></i>
+                        </div>
+                        <div class="content">
+                            <h5>电子邮箱</h5>
+                            <p><br/><a href="mailto:ppypaper@163.com">ppypaper@163.com</a><br/><br/></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="sasly-iconic-box mb-30" data-aos="fade-up" data-aos-duration="1900">
+                        <div class="icon">
+                            <i class="flaticon-telephone"></i>
+                        </div>
+                        <div class="content">
+                            <h5>联系电话</h5>
+                            <p><br/><a href="tel:13397166330">133-9716-6330</a><br/><br/></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form-ss pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-content-box mb-50" data-aos="fade-right" data-aos-duration="1200">
+                        <div class="section-title mb-30">
+                            <span class="sub-heading">联系我们</span>
+                            <h2 class="text-anm">开始您的<br />GEO优化之旅</h2>
+                        </div>
+                        <p data-aos="fade-up" data-aos-duration="1000">获取免费的GEO诊断报告，了解您的品牌在AI搜索中的表现</p>
+                        <div class="sasly-img" data-aos="fade-up" data-aos-duration="1200">
+                            <img src="/assets/picture/contact1.jpg" alt="Contact Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="contact-wrapper mb-50" data-aos="fade-left" data-aos-duration="1400">
+                        <h3>免费咨询诊断</h3>
+                        <p>发送您的品牌，我们将在24小时内为您免费评估，并发送到您的邮箱中 *</p>
+                        <!-- TODO(后端): 接通后端表单接口后，删除 contact.js 中的 mock 提示并改 action -->
+                        <form id="contact-form" class="contact-form" action="#" method="POST" novalidate>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form_control" placeholder="您的姓名" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form_control" placeholder="您的邮箱" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form_control" placeholder="您的品牌" name="brand" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="tel" class="form_control" placeholder="您的电话" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <textarea class="form_control" placeholder="咨询内容及问题" name="message" rows="5" cols="8"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="theme-btn style-one">免费获取优化方案 <i class="far fa-angle-double-right"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-message" role="alert" aria-live="polite"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="animated-big-text pb-75">
+        <div class="headline-wrap style-two">
+            <span class="marquee-wrap">
+                <span class="marquee-inner left">
+                    <span class="marquee-item"><b>  扑扑鹰·专业领先的GEO优化服务商。</b></span>
+                    <span class="marquee-item"><b>让你的品牌，成为AI的答案</b></span>
+                </span>
+                <span class="marquee-inner left">
+                    <span class="marquee-item"><b>  扑扑鹰·专业领先的GEO优化服务商。</b></span>
+                    <span class="marquee-item"><b>让你的品牌，成为AI的答案</b></span>
+                </span>
+            </span>
+        </div>
+    </section>
+
+    <CTASection />
+    <script>import '../scripts/pages/contact.js';</script>
+</BaseLayout>
