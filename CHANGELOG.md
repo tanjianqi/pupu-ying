@@ -6,6 +6,24 @@
 
 ---
 
+## [v1.7.1] - 2026-09-02
+
+### 阶段：CI/CD workflow bug 修复
+
+### Fixed
+- **ci.yml**：API 测试步骤 `SMTP_PORT` 笔误 4321 → 465（误把应用端口当 SMTP 端口）
+- **deploy.yml**：构建步骤同上 `SMTP_PORT` 笔误修正
+- **deploy.yml**：`scp-action` / `ssh-action` 的 `key` 参数由文件路径改为直接传私钥内容（appleboy action 要求内容而非路径，原写法必然失败）
+- **deploy.yml**：`source` 补充 `deploy/` 目录（否则远程执行 `bash deploy/remote-deploy.sh` 找不到文件）
+- **deploy.yml**：删除"配置 SSH"/"清理 SSH 密钥"步骤（key 不再落盘，无需读写文件）
+- **remote-deploy.sh**：`DEPLOY_DIR` 默认值由硬编码 `/var/www/pupu-ying` 改为 `$PWD`（CI 调用时未传该变量，原默认值会 cd 到错误目录）
+
+### 验证
+- 本地 `npm run build` + API 测试不受影响（workflow 变更不涉及运行时代码）
+- 修复后 workflow 逻辑走查：scp 直传 key 内容 → 远程 bash deploy/remote-deploy.sh → 本地健康检查 → Actions 端健康检查
+
+---
+
 ## [v1.7.0] - 2026-09-02
 
 ### 阶段：本地局域网部署（Windows）

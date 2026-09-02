@@ -4,11 +4,11 @@
 # @职责 服务器端：安装依赖 → 重启 PM2 → 验证
 # @使用 由 GitHub Actions deploy.yml 通过 SSH 调用
 # @前置 CI 已通过 npm run build，dist/ 已通过 scp 同步到服务器
-# @版本 v1.6.0
+# @版本 v1.7.1
 set -e
 
-# 切换到部署目录（由调用方 cd 进入）
-DEPLOY_DIR="${DEPLOY_DIR:-/var/www/pupu-ying}"
+# 切换到部署目录（默认为调用方当前目录，CI 已 cd 到 DEPLOY_PATH）
+DEPLOY_DIR="${DEPLOY_DIR:-$PWD}"
 cd "$DEPLOY_DIR" || { echo "❌ 部署目录不存在：$DEPLOY_DIR"; exit 1; }
 
 echo "=== 扑扑鹰服务器端部署 ==="

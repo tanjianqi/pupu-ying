@@ -41,7 +41,7 @@ jobs:
         run: npm run test:api
         env:
           SMTP_HOST: smtp.exmail.qq.com
-          SMTP_PORT: 4321
+          SMTP_PORT: 465
 
       - name: 上传构建产物
         if: github.ref == 'refs/heads/main'

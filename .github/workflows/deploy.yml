@@ -35,22 +35,15 @@ jobs:
         run: npm run build
         env:
           SMTP_HOST: smtp.exmail.qq.com
-          SMTP_PORT: 4321
-
-      - name: 配置 SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          SMTP_PORT: 465
 
       - name: 同步构建产物到服务器
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
-          key: ~/.ssh/deploy_key
-          source: 'dist/,package.json,ecosystem.config.cjs,.env.example'
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          source: 'dist/,package.json,ecosystem.config.cjs,deploy/,.env.example'
           target: ${{ secrets.DEPLOY_PATH }}
           overwrite: true
 
@@ -59,7 +52,7 @@ jobs:
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
-          key: ~/.ssh/deploy_key
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             bash deploy/remote-deploy.sh
@@ -78,7 +71,3 @@ jobs:
           done
           echo "部署后健康检查失败"
           exit 1
-
-      - name: 清理 SSH 密钥
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
