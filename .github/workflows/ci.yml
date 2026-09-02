@@ -1,9 +1,52 @@
+# 扑扑鹰 CI：代码质量检查 + 构建 + API 测试
+# @触发 push / PR
+# @职责 确保每次提交都通过 build 和 test
 name: CI
 
-on: [push]
+on: [push, pull_request]
+
+permissions:
+  contents: read
 
 jobs:
-  smoke:
+  build-and-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
-      - run: echo "smoke test ok"
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 代码风格检查（如有 lint 脚本）
+        run: npm run lint --if-present
+
+      - name: 构建
+        run: npm run build
+        env:
+          # CI 环境不配 SMTP 凭证，contact 端点降级模式
+          SMTP_HOST: smtp.exmail.qq.com
+          SMTP_PORT: 465
+          SMTP_SECURE: 'true'
+
+      - name: 运行 API 集成测试
+        run: npm run test:api
+        env:
+          SMTP_HOST: smtp.exmail.qq.com
+          SMTP_PORT: 4321
+
+      - name: 上传构建产物
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
