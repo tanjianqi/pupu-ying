@@ -6,6 +6,33 @@
 
 ---
 
+## [v1.2.1] - 2026-09-02
+
+### 阶段：API 文档完善 + rank 数据源可插拔
+
+### Added
+- **docs/api.md**：完整 API 端点文档
+  - GET /api/rank：请求/响应/字段说明 + curl 示例
+  - POST /api/contact：5 种响应场景 + 邮件内容格式 + curl 示例
+  - 环境变量配置表 + 腾讯企业邮客户端专用密码生成步骤
+  - 部署说明（构建产物结构 + standalone 启动 + 环境变量注入）
+  - 本地开发与测试指南 + 降级模式说明
+  - 后续扩展点清单
+
+### Changed
+- **README.md**：技术栈补充 Astro 5+/node adapter/nodemailer；快速开始添加 .env 配置；目录结构加 api/ 与 docs/api.md；版本阶段映射扩展到 v1.2.0；文档列表补 api.md + qa-report.md
+- **src/pages/api/rank.ts**：数据源抽象为 loadRankData() 可插拔函数
+  - 当前读 rank-mock.json，后续接真实数据源仅替换 loadRankData 实现
+  - 新增 RankRow 类型定义
+  - 新增数据源加载失败 503 响应
+  - GET 改为 async 以兼容异步数据源
+- **package.json**：1.2.0 → 1.2.1
+
+### Build
+- npm run build 通过，23 静态页面 + 服务端 entrypoints
+
+---
+
 ## [v1.2.0] - 2026-09-02
 
 ### 阶段：腾讯企业邮 SMTP 接入（第 4 章续）

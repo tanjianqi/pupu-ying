@@ -2,7 +2,8 @@
  * 扑扑鹰 GEO 排名查询 API 端点
  * @module api/rank
  * @职责 接收 keyword + platform 参数，返回品牌在 AI 搜索平台的排名表现
- * @状态 v1.1.0 - 当前读取 rank-mock.json 演示数据；后续接真实数据源时替换 data loader
+ * @状态 v1.2.1 - 数据源抽象为 loadRankData()，当前读 rank-mock.json；
+ *               后续接真实数据源时仅替换 loadRankData 实现，端点契约不变
  * @方法 GET /api/rank?keyword=xxx&platform=xxx
  */
 import type { APIRoute } from 'astro';
@@ -10,7 +11,25 @@ import mockData from '../../data/rank-mock.json';
 
 export const prerender = false;
 
-export const GET: APIRoute = ({ url }) => {
+// ===== 类型定义 =====
+interface RankRow {
+  keyword: string;
+  platform: string;
+  rank: number;
+  url: string;
+  change: string;
+}
+
+// ===== 可插拔数据源 =====
+// 当前：读取本地 mock JSON
+// 后续：可替换为数据库查询 / 第三方 API 调用 / 爬虫结果等
+// 注意：替换时保持返回 Promise<RankRow[]>，端点过滤逻辑无需改动
+async function loadRankData(): Promise<RankRow[]> {
+  // mock 数据是同步导入的 JSON，包一层 Promise 保持异步签名一致
+  return (mockData as { results: RankRow[] }).results;
+}
+
+export const GET: APIRoute = async ({ url }) => {
   // 解析查询参数
   const keyword = url.searchParams.get('keyword')?.trim() || '';
   const platform = url.searchParams.get('platform')?.trim() || '';
@@ -23,8 +42,20 @@ export const GET: APIRoute = ({ url }) => {
     );
   }
 
-  // 过滤 mock 数据（platform=全部 时不限平台）
-  let results = mockData.results.filter((r) => r.keyword === keyword);
+  // 加载数据源（当前 mock，后续可替换）
+  let allRows: RankRow[];
+  try {
+    allRows = await loadRankData();
+  } catch (e) {
+    console.error('[/api/rank] 数据源加载失败：', e);
+    return new Response(
+      JSON.stringify({ ok: false, message: '数据源暂时不可用，请稍后重试' }),
+      { status: 503, headers: { 'Content-Type': 'application/json; charset=utf-8' } }
+    );
+  }
+
+  // 过滤数据（platform=全部 时不限平台）
+  let results = allRows.filter((r) => r.keyword === keyword);
   if (platform && platform !== '全部') {
     results = results.filter((r) => r.platform === platform);
   }
