@@ -374,7 +374,124 @@ npm run stop
 | 文件 | 说明 |
 |---|---|
 | [ecosystem.config.cjs](../ecosystem.config.cjs) | PM2 进程配置 |
-| [deploy/deploy.sh](deploy/deploy.sh) | 一键部署脚本 |
+| [deploy/deploy.sh](deploy/deploy.sh) | 一键部署脚本（本地执行） |
+| [deploy/remote-deploy.sh](deploy/remote-deploy.sh) | 服务器端部署脚本（CI/CD 调用） |
 | [deploy/nginx.conf](deploy/nginx.conf) | Nginx 反代配置示例 |
+| [.github/workflows/ci.yml](../.github/workflows/ci.yml) | CI 工作流（测试+构建） |
+| [.github/workflows/deploy.yml](../.github/workflows/deploy.yml) | CD 工作流（自动部署） |
 | [.env.example](../.env.example) | 环境变量模板 |
 | [docs/api.md](api.md) | API 端点文档 |
+
+---
+
+## CI/CD 自动部署（v1.6.0+）
+
+项目配置了 GitHub Actions 实现 CI/CD 自动化：push 到 main 分支自动触发构建 → 测试 → 部署到生产服务器。
+
+### 工作流概览
+
+| 工作流 | 触发条件 | 职责 |
+|---|---|---|
+| `ci.yml` | push 到任意分支 / PR 到 main | 安装 → 构建 → 运行 API 测试 → 上传构建产物 |
+| `deploy.yml` | push 到 main（CI 通过后） | SSH 登录服务器 → scp 同步 dist/ → 远程执行部署脚本 → 健康检查 |
+
+### 部署流程图
+
+```
+开发者 push 到 main
+        ↓
+GitHub Actions CI（ci.yml）
+  ├─ npm ci
+  ├─ npm run build
+  └─ npm run test:api（36 断言）
+        ↓ CI 通过
+GitHub Actions CD（deploy.yml）
+  ├─ npm ci + npm run build
+  ├─ 配置 SSH 密钥
+  ├─ scp 同步 dist/ + package.json + ecosystem.config.cjs 到服务器
+  ├─ SSH 远程执行 deploy/remote-deploy.sh
+  │   ├─ npm install --omit=dev
+  │   ├─ pm2 restart ecosystem.config.cjs
+  │   └─ 本地健康检查（127.0.0.1:4321）
+  └─ 远程健康检查（https://域名/api/rank?keyword=ping）
+        ↓
+部署完成，服务对外可用
+```
+
+### 配置 GitHub Secrets
+
+在 GitHub 仓库 Settings → Secrets and variables → Actions → New repository secret 添加：
+
+| Secret 名 | 说明 | 示例值 |
+|---|---|---|
+| `DEPLOY_HOST` | 服务器 IP 或域名 | `123.45.67.89` 或 `www.ppypaper.com` |
+| `DEPLOY_USER` | SSH 用户名 | `deploy` 或 `root` |
+| `DEPLOY_SSH_KEY` | SSH 私钥（完整内容） | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
+| `DEPLOY_PATH` | 服务器部署目录 | `/var/www/pupu-ying` |
+
+### 生成 SSH 密钥对
+
+```bash
+# 在服务器上生成专用部署密钥（不要复用登录密钥）
+ssh-keygen -t ed25519 -C "github-actions-deploy" -f ~/.ssh/github_actions_deploy
+
+# 将公钥添加到 authorized_keys
+cat ~/.ssh/github_actions_deploy.pub >> ~/.ssh/authorized_keys
+
+# 复制私钥内容（粘贴到 GitHub Secret DEPLOY_SSH_KEY）
+cat ~/.ssh/github_actions_deploy
+```
+
+### 服务器首次准备
+
+```bash
+# 1. 创建部署目录
+sudo mkdir -p /var/www/pupu-ying
+sudo chown -R deploy:deploy /var/www/pupu-ying
+
+# 2. 首次 clone（后续由 CI/CD 同步，无需 git）
+cd /var/www/pupu-ying
+git clone <仓库地址> .
+
+# 3. 配置 .env
+cp .env.example .env
+nano .env   # 填入 SMTP_USER + SMTP_PASS
+
+# 4. 安装 PM2 + Node.js（见前置准备章节）
+
+# 5. 首次手动部署
+npm run deploy
+```
+
+### 触发部署
+
+- **自动触发**：push 到 `main` 分支
+- **手动触发**：GitHub 仓库 → Actions → Deploy → Run workflow
+
+### 查看部署状态
+
+1. GitHub 仓库 → Actions 标签页
+2. 选择最近的 Deploy 或 CI workflow run
+3. 查看每个 step 的日志
+
+### 部署失败处理
+
+```bash
+# SSH 登录服务器查看 PM2 日志
+ssh deploy@your-server
+cd /var/www/pupu-ying
+pm2 logs pupu-ying --lines 100
+
+# 回滚到上一个版本
+git log --oneline -5
+git checkout v1.5.0   # 或上一个 tag
+npm install --omit=dev
+pm2 restart ecosystem.config.cjs
+```
+
+### CI/CD 安全建议
+
+- SSH 密钥专用，不复用登录密钥
+- 部署用户权限最小化（仅 /var/www/pupu-ying 目录）
+- 生产环境 .env 不进 Git，手动在服务器配置
+- CI 不暴露真实 SMTP 凭证（测试降级模式即可）

@@ -6,6 +6,43 @@
 
 ---
 
+## [v1.6.0] - 2026-09-02
+
+### 阶段：CI/CD 自动部署（GitHub Actions）
+
+### Added
+- **.github/workflows/ci.yml**：CI 工作流
+  - 触发：push 到任意分支 / PR 到 main
+  - 步骤：npm ci → 构建 → 运行 API 测试 → 上传构建产物（main 分支保留 7 天）
+  - CI 环境不配真实 SMTP 凭证，测试降级模式 + 反垃圾逻辑
+- **.github/workflows/deploy.yml**：CD 工作流
+  - 触发：push 到 main（自动）/ workflow_dispatch（手动）
+  - 步骤：构建 → 配置 SSH → scp 同步 dist/ → 远程执行 remote-deploy.sh → 健康检查
+  - 健康检查：5 次重试 curl /api/rank，200 或 400 视为成功
+  - 始终清理 SSH 密钥（if: always()）
+- **deploy/remote-deploy.sh**：服务器端部署脚本
+  - 检查 .env + PM2 → npm install --omit=dev → 创建 logs/ → pm2 restart → 本地健康检查
+  - 由 GitHub Actions 通过 SSH 调用
+- **docs/deployment.md**：新增 CI/CD 章节
+  - 工作流概览表 + 部署流程图
+  - GitHub Secrets 配置表（DEPLOY_HOST/USER/SSH_KEY/PATH）
+  - SSH 密钥对生成步骤
+  - 服务器首次准备 + 触发部署 + 失败处理 + 安全建议
+
+### Changed
+- **docs/deployment.md**：相关文件表新增 remote-deploy.sh + ci.yml + deploy.yml
+- **package.json**：1.5.0 → 1.6.0
+
+### CI/CD 流程
+```
+push → CI（测试+构建）→ CD（SSH 部署+健康检查）→ 上线
+```
+
+### Build
+- npm run build 通过，23 静态页面 + 服务端 entrypoints
+
+---
+
 ## [v1.5.0] - 2026-09-02
 
 ### 阶段：API 集成测试（10 用例 36 断言全通过）
