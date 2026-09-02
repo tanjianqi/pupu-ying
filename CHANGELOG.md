@@ -6,6 +6,48 @@
 
 ---
 
+## [v1.3.0] - 2026-09-02
+
+### 阶段：生产部署配置（PM2 + Nginx + 一键部署）
+
+### Added
+- **ecosystem.config.cjs**：PM2 进程管理配置
+  - 进程名 pupu-ying，fork 模式，自动重启（max 10 次）
+  - 内存超限 512M 自动重启
+  - 日志输出到 logs/ 目录，按天切割，单文件 10M
+  - 环境变量 NODE_ENV=production，监听 127.0.0.1:4321
+- **deploy/deploy.sh**：一键部署脚本
+  - 检查 .env 与 PM2 → npm install → npm run build → 创建 logs/ → 启动/重启 PM2 → pm2 save
+- **deploy/nginx.conf**：Nginx 反向代理配置示例
+  - HTTP → HTTPS 301 跳转
+  - SSL/TLS 1.2+1.3 配置
+  - 反代到 127.0.0.1:4321 + 静态资源缓存 + gzip
+  - 联系表单代理超时 60s（邮件发送可能较慢）
+- **docs/deployment.md**：完整部署指南
+  - 部署架构图 + 前置准备（Node.js/PM2/Nginx 安装）
+  - 一键部署 + 手动部署步骤
+  - Nginx 反代 + Let's Encrypt SSL + 开机自启配置
+  - 日常运维命令表 + 故障排查 + 回滚方案
+- **package.json scripts**：新增生产命令
+  - `npm run start/stop/restart/logs/status/deploy`
+- **.gitignore**：新增 `logs/` 排除 PM2 日志目录
+
+### Changed
+- **README.md**：新增「生产部署」章节；目录结构加 deploy/ 与 ecosystem.config.cjs；版本阶段映射加 v1.2.1 + v1.3.0；文档列表加 deployment.md
+- **package.json**：1.2.1 → 1.3.0
+
+### Build
+- npm run build 通过，23 静态页面 + 服务端 entrypoints
+
+### 部署就绪状态
+- PM2 进程配置 ✓
+- Nginx 反代示例 ✓
+- 一键部署脚本 ✓
+- 完整部署文档 ✓
+- 待操作：填入 .env 凭证 → `npm run deploy` 上线
+
+---
+
 ## [v1.2.1] - 2026-09-02
 
 ### 阶段：API 文档完善 + rank 数据源可插拔

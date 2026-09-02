@@ -23,6 +23,19 @@ npm run preview  # 预览构建产物
 
 > 邮件功能（/api/contact）需在 `.env` 填入腾讯企业邮 SMTP 凭证后才能真实发信；凭证为空时自动降级为「校验通过未发信」模式。
 
+## 生产部署
+
+```bash
+npm run deploy   # 一键部署（安装+构建+PM2 启动）
+npm run start    # 启动 PM2 进程
+npm run stop     # 停止 PM2 进程
+npm run restart  # 重启 PM2 进程
+npm run logs     # 查看实时日志
+npm run status   # 查看进程状态
+```
+
+详细部署流程见 [docs/deployment.md](docs/deployment.md)（PM2 + Nginx 反代 + Let's Encrypt SSL）。
+
 ## 目录结构
 
 ```
@@ -35,13 +48,18 @@ npm run preview  # 预览构建产物
 │  ├─ pages/        # 路由页面（.astro）+ api/（服务端端点 .ts）
 │  ├─ scripts/      # 业务脚本（main.js + pages/）
 │  └─ styles/       # global.css + theme.css + pages/
+├─ deploy/          # 部署脚本与配置
+│  ├─ deploy.sh     # 一键部署脚本
+│  └─ nginx.conf    # Nginx 反代配置示例
 ├─ docs/            # 项目文档
 │  ├─ superpowers/  # spec + plans
 │  ├─ api.md        # API 端点文档
+│  ├─ deployment.md # 部署指南
 │  ├─ migration-log.md  # 迁移进度表
 │  ├─ decisions.md  # 决策记录(ADR)
 │  └─ qa-report.md  # 死链检查报告
 ├─ legacy/          # 迁移期保留的原站对照
+├─ ecosystem.config.cjs  # PM2 进程配置
 ├─ .env.example     # 环境变量模板
 ├─ astro.config.mjs # Astro 配置（site + adapter + sitemap）
 └─ package.json
@@ -49,7 +67,7 @@ npm run preview  # 预览构建产物
 
 ## 版本规范
 
-- **版本号**: SemVer 严格 + 阶段化节奏（`v0.1.0` 基线 → `v1.2.0` 后端接通）
+- **版本号**: SemVer 严格 + 阶段化节奏（`v0.1.0` 基线 → `v1.3.0` 生产部署就绪）
 - **提交**: Conventional Commits（`feat / fix / refactor / chore / docs / style / test`）
 - **Tag**: 每个阶段结束打 git tag，与版本号一致
 - **变更日志**: 见 [CHANGELOG.md](CHANGELOG.md)
@@ -71,6 +89,8 @@ npm run preview  # 预览构建产物
 | v1.0.1 | 已知遗留修复（0 WARN + ScrollSmoother 删除） |
 | v1.1.0 | 后端 API 接通（/api/rank + /api/contact + node adapter） |
 | v1.2.0 | 腾讯企业邮 SMTP 接入（nodemailer 真实发信） |
+| v1.2.1 | API 文档完善 + rank 数据源可插拔 |
+| v1.3.0 | 生产部署配置（PM2 + Nginx + 一键部署脚本） |
 
 ## 代码规范
 
@@ -84,6 +104,7 @@ npm run preview  # 预览构建产物
 
 - [设计文档](docs/superpowers/specs/2026-09-01-ppy-astro-migration-design.md)
 - [API 端点文档](docs/api.md)
+- [部署指南](docs/deployment.md)
 - [变更日志](CHANGELOG.md)
 - [迁移进度表](docs/migration-log.md)
 - [决策记录](docs/decisions.md)

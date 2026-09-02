@@ -1,13 +1,19 @@
 {
   "name": "pupu-ying",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "private": true,
   "description": "扑扑鹰 GEO+SEO 优化服务商官网 (Astro)",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "pm2 start ecosystem.config.cjs",
+    "stop": "pm2 stop ecosystem",
+    "restart": "pm2 restart ecosystem.config.cjs",
+    "logs": "pm2 logs ecosystem",
+    "status": "pm2 describe pupu-ying",
+    "deploy": "bash deploy/deploy.sh"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
