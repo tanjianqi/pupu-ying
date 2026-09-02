@@ -6,6 +6,44 @@
 
 ---
 
+## [v1.5.0] - 2026-09-02
+
+### 阶段：API 集成测试（10 用例 36 断言全通过）
+
+### Added
+- **tests/api/test.mjs**：API 集成测试脚本
+  - 自动启动 preview 服务器 → 运行测试 → 输出报告 → 关闭服务器
+  - 仅依赖 Node.js 内置（fetch + child_process），无需额外安装
+  - 支持通过 X-Forwarded-For 头模拟不同 IP，隔离测试用例的速率限制配额
+- **/api/rank 测试（4 用例）**：
+  1. 正常查询 keyword=GEO优化 → 200 + ok:true + count + results
+  2. 指定平台 platform=豆包 → 200 + 结果全为豆包
+  3. 缺 keyword 参数 → 400 + ok:false + message 提示
+  4. 不存在的 keyword → 200 + count:0 + 空数组
+- **/api/contact 测试（6 用例）**：
+  5. 正常提交（开发模式降级）→ 200 + ok:true + sent:boolean
+  6. 缺字段 → 400 + ok:false + message 提示缺失字段
+  7. 邮箱格式错误 → 400 + ok:false + message 提示邮箱
+  8. 非法 JSON → 400 + ok:false + message 提示 JSON
+  9. 蜜罐字段被填写 → 200 + ok:true + received.blocked:true（静默拒绝）
+  10. 速率限制 → 连续 4 次（前 3 次 200，第 4 次 429）
+- **package.json scripts**：新增 `npm run test:api` / `npm run test`
+
+### Test Results
+- 通过：36 断言
+- 失败：0
+- 总计：36 断言
+- 覆盖：v1.1.0-v1.4.0 所有后端功能
+
+### Changed
+- **package.json**：1.4.0 → 1.5.0
+
+### Build
+- npm run build 通过，23 静态页面 + 服务端 entrypoints
+- npm run test:api 通过，36/36 断言全绿
+
+---
+
 ## [v1.4.0] - 2026-09-02
 
 ### 阶段：反垃圾加固（蜜罐 + IP 速率限制 + reCAPTCHA 可选）

@@ -1,6 +1,6 @@
 {
   "name": "pupu-ying",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "description": "扑扑鹰 GEO+SEO 优化服务商官网 (Astro)",
   "scripts": {
@@ -13,7 +13,9 @@
     "restart": "pm2 restart ecosystem.config.cjs",
     "logs": "pm2 logs ecosystem",
     "status": "pm2 describe pupu-ying",
-    "deploy": "bash deploy/deploy.sh"
+    "deploy": "bash deploy/deploy.sh",
+    "test:api": "node tests/api/test.mjs",
+    "test": "npm run test:api"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
