@@ -6,6 +6,46 @@
 
 ---
 
+## [v1.4.0] - 2026-09-02
+
+### 阶段：反垃圾加固（蜜罐 + IP 速率限制 + reCAPTCHA 可选）
+
+### Added
+- **src/utils/rate-limit.ts**：IP 速率限制器
+  - 滑动窗口算法（默认 60s 窗口，每 IP 最多 3 次）
+  - 内存 Map 存储 + 5 分钟定期清理过期 bucket
+  - getClientIP() 从 X-Forwarded-For/CF-Connecting-IP/X-Real-IP 提取真实 IP
+  - RateLimitResult 返回 allowed/remaining/resetAt/retryAfter
+- **contact.ts 反垃圾三层防御**：
+  - 第 1 层：IP 速率限制（最外层，先于 body 解析，超限返回 429 + Retry-After 头）
+  - 第 2 层：蜜罐字段检测（website 字段非空判定机器人，静默返回成功不发信）
+  - 第 3 层：reCAPTCHA 可选校验（环境变量 RECAPTCHA_SECRET 配置后启用，fail-closed）
+- **contact.astro**：表单增加蜜罐隐藏字段
+  - `<div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;...">`
+  - label + input name="website" + tabindex="-1" + autocomplete="off"
+- **contact.js**：前端配合反垃圾
+  - payload 添加 `website: ''`（正常用户隐藏字段为空）
+  - 429 响应特殊处理：读取 retryAfter 显示倒计时提示
+- **.env.example**：新增反垃圾配置项
+  - CONTACT_RATE_LIMIT_MAX（默认 3）
+  - RECAPTCHA_SECRET（可选，留空不启用）
+- **邮件内容增强**：纯文本 + HTML 邮件均添加来源 IP 字段，便于追溯
+
+### Changed
+- **package.json**：1.3.0 → 1.4.0
+- **contact.ts**：POST 处理流程重构为 6 步（IP限流→解析→蜜罐→reCAPTCHA→字段校验→发信）
+
+### Security
+- 蜜罐字段对用户隐藏（position:absolute + left:-9999px + aria-hidden）
+- 机器人检测静默返回成功，不泄露检测机制
+- reCAPTCHA fail-closed：验证服务异常时拒绝请求（不放过潜在机器人）
+- 429 响应含 Retry-After 头，符合 HTTP 标准
+
+### Build
+- npm run build 通过，23 静态页面 + 服务端 entrypoints
+
+---
+
 ## [v1.3.0] - 2026-09-02
 
 ### 阶段：生产部署配置（PM2 + Nginx + 一键部署）

@@ -1,11 +1,11 @@
 /**
- * @file 联系页脚本（contact.js）
+ * 联系页脚本（contact.js）
  * @description 联系表单提交处理：原生 DOM 校验必填项 → fetch /api/contact → 显示成功/失败提示。
- *              字段：name/brand/email/phone/message（原 ajax-contact.js 因表单字段重名已废弃）。
+ *              字段：name/brand/email/phone/message + website(蜜罐)（原 ajax-contact.js 因表单字段重名已废弃）。
  * @module pages/contact
  * @依赖 无（原生 DOM；jQuery 全局已就绪但本模块未使用）
  * @导出 无（自动执行，由 contact.astro 引入）
- * @来源 v1.1.0 从 mock 改为 fetch /api/contact 端点
+ * @来源 v1.4.0 增加蜜罐字段发送 + 429 限流响应处理
  */
 
 (function () {
@@ -57,7 +57,7 @@
         return;
       }
 
-      // v1.1.0: fetch /api/contact 端点
+      // v1.4.0: fetch /api/contact 端点（含蜜罐字段 website）
       setSubmitLoading(true);
       var payload = {
         name: name.value.trim(),
@@ -65,6 +65,7 @@
         brand: brand.value.trim(),
         phone: phone.value.trim(),
         message: message ? message.value.trim() : '',
+        website: '',  // 蜜罐字段：正常用户不会填写此隐藏字段
       };
 
       fetch('/api/contact', {
@@ -78,6 +79,12 @@
           });
         })
         .then(function (result) {
+          // v1.4.0: 429 速率限制特殊处理
+          if (result.status === 429) {
+            var retryAfter = (result.data && result.data.retryAfter) || 60;
+            setMessage(result.data.message || ('提交过于频繁，请 ' + retryAfter + ' 秒后再试。'), 'error');
+            return;
+          }
           if (result.data && result.data.ok) {
             setMessage(result.data.message || '提交成功！', 'success');
             form.reset();

@@ -85,8 +85,12 @@ import CTASection from '../components/CTASection.astro';
                     <div class="contact-wrapper mb-50" data-aos="fade-left" data-aos-duration="1400">
                         <h3>免费咨询诊断</h3>
                         <p>发送您的品牌，我们将在24小时内为您免费评估，并发送到您的邮箱中 *</p>
-                        <!-- TODO(后端): 接通后端表单接口后，删除 contact.js 中的 mock 提示并改 action -->
                         <form id="contact-form" class="contact-form" action="#" method="POST" novalidate>
+                            <!-- 蜜罐字段：对用户隐藏，机器人会填写，服务端检测非空则拒绝 -->
+                            <div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                                <label for="website">网站（请勿填写）</label>
+                                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
