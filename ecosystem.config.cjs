@@ -23,7 +23,7 @@ module.exports = {
       max_memory_restart: '512M',
       env: {
         NODE_ENV: 'production',
-        HOST: '127.0.0.1',
+        HOST: '0.0.0.0',
         PORT: '4321',
       },
       // 日志配置：按天切割，保留 7 份

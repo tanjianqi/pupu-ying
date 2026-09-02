@@ -6,6 +6,31 @@
 
 ---
 
+## [v1.7.0] - 2026-09-02
+
+### 阶段：本地局域网部署（Windows）
+
+### Changed
+- **ecosystem.config.cjs**：`HOST` 由 `127.0.0.1` 改为 `0.0.0.0`
+  - 允许局域网内其他设备访问（仅本机 → 全网卡监听）
+  - 生产 Linux 服务器仍建议走 Nginx 反代，此处为本地开发/演示场景
+
+### Added
+- **deploy/open-firewall.ps1**：Windows 防火墙放行脚本（PowerShell 版）
+  - 以管理员身份运行，自动添加 4321 端口入站规则（Private 配置文件）
+  - 内置重复规则清理 + 局域网地址输出
+- **deploy/open-firewall.cmd**：Windows 防火墙放行脚本（批处理版）
+  - 双击运行，自动检测并提权（UAC），跨 PowerShell/CMD 均可使用
+- **docs/deployment.md**：新增「本地局域网部署（Windows）」章节
+  - 覆盖场景说明 + 分步操作 + 访问地址 + 防火墙放行 + 常见问题
+
+### 验证
+- 服务监听 `0.0.0.0:4321`，本机 + 局域网 IP 访问均返回 200
+- API 集成测试 36/36 断言通过
+- 防火墙规则 `pupu-ying-4321` 已添加（TCP 4321, Private, Allow）
+
+---
+
 ## [v1.6.0] - 2026-09-02
 
 ### 阶段：CI/CD 自动部署（GitHub Actions）

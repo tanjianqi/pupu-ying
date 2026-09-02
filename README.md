@@ -50,7 +50,9 @@ npm run status   # 查看进程状态
 │  └─ styles/       # global.css + theme.css + pages/
 ├─ deploy/          # 部署脚本与配置
 │  ├─ deploy.sh     # 一键部署脚本
-│  └─ nginx.conf    # Nginx 反代配置示例
+│  ├─ nginx.conf    # Nginx 反代配置示例
+│  ├─ open-firewall.ps1  # Windows 防火墙放行脚本（PowerShell 版）
+│  └─ open-firewall.cmd  # Windows 防火墙放行脚本（双击提权版）
 ├─ docs/            # 项目文档
 │  ├─ superpowers/  # spec + plans
 │  ├─ api.md        # API 端点文档
@@ -91,6 +93,10 @@ npm run status   # 查看进程状态
 | v1.2.0 | 腾讯企业邮 SMTP 接入（nodemailer 真实发信） |
 | v1.2.1 | API 文档完善 + rank 数据源可插拔 |
 | v1.3.0 | 生产部署配置（PM2 + Nginx + 一键部署脚本） |
+| v1.4.0 | 反垃圾加固（蜜罐 + IP 速率限制 + reCAPTCHA 可选） |
+| v1.5.0 | API 集成测试（10 用例 36 断言） |
+| v1.6.0 | CI/CD 自动部署（GitHub Actions） |
+| v1.7.0 | 本地局域网部署（Windows 防火墙放行） |
 
 ## 代码规范
 
@@ -105,6 +111,7 @@ npm run status   # 查看进程状态
 - [设计文档](docs/superpowers/specs/2026-09-01-ppy-astro-migration-design.md)
 - [API 端点文档](docs/api.md)
 - [部署指南](docs/deployment.md)
+- [本地局域网部署](docs/local-lan-deployment.md)
 - [变更日志](CHANGELOG.md)
 - [迁移进度表](docs/migration-log.md)
 - [决策记录](docs/decisions.md)
