@@ -6,6 +6,50 @@
 
 ---
 
+## [v1.2.0] - 2026-09-02
+
+### 阶段：腾讯企业邮 SMTP 接入（第 4 章续）
+
+### Added
+- **nodemailer 依赖**：生产依赖 nodemailer + 开发依赖 @types/nodemailer
+- **dotenv 依赖**：用于在 preview/standalone 模式加载 .env 环境变量
+- **.env.example 模板**：腾讯企业邮 SMTP 配置模板（SMTP_HOST/PORT/SECURE/USER/PASS/FROM_NAME/MAIL_TO）
+  - 腾讯企业邮默认：smtp.exmail.qq.com:465（SSL），需生成「客户端专用密码」
+- **contact.ts 邮件发送逻辑**：
+  - nodemailer.createTransport 创建 SMTP 连接池（单例复用）
+  - 邮件内容：纯文本 + HTML 双版本（HTML 表格排版，含 mailto/tel 链接）
+  - replyTo 设为提交者邮箱，方便直接回复
+  - 邮件主题格式：`[官网咨询] {品牌} - {姓名}`
+  - 凭证不完整时自动降级为「校验通过未发信」模式（sent:false）
+
+### Changed
+- **src/pages/api/contact.ts**：v1.1.0 仅校验 → v1.2.0 接入 nodemailer 真实发送
+  - 顶部 `import 'dotenv/config'` 加载 .env
+  - getTransporter() 单例管理 SMTP 连接
+  - sendMail 发送 + try/catch 错误处理
+  - SMTP 失败返回 500 + 服务器日志 console.error（不暴露内部错误给前端）
+
+### Security
+- .env 已在 .gitignore 中排除，凭证不进入版本控制
+- SMTP 失败响应不暴露内部错误细节，仅返回通用提示 + geo@ppypaper.com 备选联系方式
+- 邮件 HTML 内容经 escapeHtml 转义防注入
+
+### Build & Test
+- npm run build 通过，23 静态页面 + 服务端 entrypoints
+- 三种场景实测：
+  - 无 .env 凭证 → 200, sent:false（开发模式降级）✓
+  - 假凭证 SMTP 认证失败 → 500, "邮件发送异常"（错误处理）✓
+  - 服务器日志正确记录 `535 Error: authentication failed` ✓
+
+### 部署说明
+- 部署时复制 .env.example 为 .env 并填入腾讯企业邮凭证：
+  - SMTP_USER：发件邮箱（如 system@ppypaper.com）
+  - SMTP_PASS：腾讯企业邮后台生成的「客户端专用密码」（非登录密码）
+- 生产环境也可用系统环境变量注入（无需 .env 文件）
+- MAIL_TO 默认 geo@ppypaper.com，可按需修改
+
+---
+
 ## [v1.1.0] - 2026-09-02
 
 ### 阶段：后端 API 接通（第 4 章）
