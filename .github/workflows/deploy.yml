@@ -1,14 +1,13 @@
 # 扑扑鹰 CD：main 分支 push 自动部署到生产服务器
-# @触发 push 到 main 分支（CI 通过后）
-# @职责 SSH 登录服务器 → 拉取最新代码 → 构建 → 重启 PM2 → 健康检查
+# @触发 push 到 main 分支
+# @职责 SSH 登录 → 拉取最新代码 → 重启 PM2 → 健康检查
 # @依赖 GitHub Secrets: DEPLOY_HOST / DEPLOY_USER / DEPLOY_SSH_KEY / DEPLOY_PATH
-# @版本 v1.6.0
 name: Deploy
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:  # 支持手动触发
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,8 +16,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: []
-    # 仅在 main 分支且 CI 已通过时部署（push 到 main 自动触发 CI 和 CD，CD 会等待 CI 完成）
     if: github.ref == 'refs/heads/main'
 
     steps:
@@ -29,7 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
       - name: 安装依赖
         run: npm ci
@@ -53,7 +50,7 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ~/.ssh/deploy_key
-          source: "dist/,package.json,ecosystem.config.cjs,.env.example"
+          source: 'dist/,package.json,ecosystem.config.cjs,.env.example'
           target: ${{ secrets.DEPLOY_PATH }}
           overwrite: true
 
@@ -74,12 +71,12 @@ jobs:
             STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://${{ secrets.DEPLOY_HOST }}/api/rank?keyword=ping || echo "000")
             echo "尝试 $i: HTTP $STATUS"
             if [ "$STATUS" = "200" ] || [ "$STATUS" = "400" ]; then
-              echo "✅ 部署成功，服务正常响应"
+              echo "部署成功，服务正常响应"
               exit 0
             fi
             sleep 3
           done
-          echo "❌ 部署后健康检查失败"
+          echo "部署后健康检查失败"
           exit 1
 
       - name: 清理 SSH 密钥

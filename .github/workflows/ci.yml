@@ -1,14 +1,9 @@
 # 扑扑鹰 CI：代码质量检查 + 构建 + API 测试
-# @触发 push 到任意分支 / PR 到 main
-# @职责 确保每次提交都通过 build 和 test，拦截破坏性变更
-# @依赖 Node.js 20 + npm
+# @触发 push / PR
+# @职责 确保每次提交都通过 build 和 test
 name: CI
 
-on:
-  push:
-    branches: ['**']
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 permissions:
   contents: read
@@ -26,7 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
       - name: 安装依赖
         run: npm ci
@@ -40,14 +35,13 @@ jobs:
           # CI 环境不配 SMTP 凭证，contact 端点降级模式
           SMTP_HOST: smtp.exmail.qq.com
           SMTP_PORT: 465
-          SMTP_SECURE: true
+          SMTP_SECURE: 'true'
 
       - name: 运行 API 集成测试
         run: npm run test:api
         env:
           SMTP_HOST: smtp.exmail.qq.com
           SMTP_PORT: 4321
-          # CI 不配真实凭证，测试降级模式 + 反垃圾逻辑
 
       - name: 上传构建产物
         if: github.ref == 'refs/heads/main'
