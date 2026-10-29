@@ -20,7 +20,7 @@
   "dependencies": {
     "@astrojs/node": "^11.1.5",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.2.10",
+    "astro": "^7.4.4",
     "dotenv": "^17.4.2",
     "nodemailer": "^9.1.1"
   },
